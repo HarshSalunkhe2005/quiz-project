@@ -1,0 +1,29 @@
+{
+  "quizTitle": "Sunday Sprint: Tech Edition",
+  "questions": [
+    {
+      "id": 1,
+      "text": "What does AI stand for?",
+      "options": [
+        "Applied Innovation",
+        "Artificial Intelligence",
+        "Advanced Internet",
+        "Automatic Information"
+      ],
+      "correctAnswer": "Artificial Intelligence",
+      "timer": 15
+    },
+    {
+      "id": 2,
+      "text": "Which of the following is an example of AI?",
+      "options": [
+        "Ceiling fan",
+        "Calculator",
+        "Voice assistant (Alexa, Siri)",
+        "Bulb"
+      ],
+      "correctAnswer": "Voice assistant (Alexa, Siri)",
+      "timer": 15
+    }
+  ]
+}
