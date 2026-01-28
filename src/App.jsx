@@ -3,7 +3,7 @@
  * Manages the state and routing of the quiz application.
  */
 import React, { useState, useEffect } from 'react';
-import { getQuizMetadata } from './services/quizService';
+const getQuizMetadata = () => ({ title: "Sunday Sprint: Tech Edition" });
 import './styles/App.css';
 
 function App() {
