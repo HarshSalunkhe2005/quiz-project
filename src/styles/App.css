@@ -132,3 +132,64 @@ input:focus {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Progress Bar at the very top */
+.progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #00f2ff;
+  box-shadow: 0 0 15px #00f2ff;
+  transition: width 0.3s ease-out;
+}
+
+/* Emergency State (Timer < 5s) */
+.emergency-mode .timer-ring {
+  border-color: #ff3e3e;
+  color: #ff3e3e;
+  box-shadow: 0 0 20px #ff3e3e;
+  animation: pulse 0.5s infinite;
+}
+
+.emergency-mode .glass-card {
+  border: 1px solid rgba(255, 62, 62, 0.3);
+  /* 2. Blurry/Glow State */
+  box-shadow: 0 0 40px rgba(255, 62, 62, 0.15);
+}
+
+.question-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 18px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 1.1rem;
+  transition: all 0.1s ease; /* No delay, just a quick snap */
+}
+
+.option-btn:active {
+  background: #00f2ff;
+  color: #000;
+}
