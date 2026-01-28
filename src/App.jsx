@@ -1,28 +1,26 @@
-/**
- * App.jsx - Updated with Quiz Logic and Result Screen
- */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LandingPage from './pages/LandingPage';
+import InstructionPage from './pages/InstructionPage';
 import QuizPage from './pages/QuizPage';
-import quizData from './data/questions.json'; // Direct import to solve path issues
+import ResultPage from './pages/ResultPage';
+import quizData from './data/questions.json';
 import './styles/App.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [view, setView] = useState('LANDING'); // LANDING, QUIZ, RESULT
+  const [lang, setLang] = useState('en'); 
+  const [view, setView] = useState('LANDING'); 
   const [finalScore, setFinalScore] = useState(0);
 
-  const handleStart = (userData) => {
+  const handleStartLanding = (userData) => {
     setUser(userData);
-    setView('QUIZ');
+    setView('INSTRUCTIONS'); 
   };
 
-  const handleFinish = (score) => {
+  const handleFinish = (score, totalMs) => {
     setFinalScore(score);
-    setTotalTime(totalMs);
     setView('RESULT');
   };
-  
 
   return (
     <div className="app-container">
@@ -30,27 +28,24 @@ function App() {
         <h1 className="neon-text">{quizData.quizTitle}</h1>
       </header>
 
-      {view === 'LANDING' && <LandingPage onStart={handleStart} />}
+      {view === 'LANDING' && (
+        <LandingPage onStart={handleStartLanding} />
+      )}
 
-      {view === 'QUIZ' && (
-        <QuizPage 
-          questions={quizData.questions} 
-          onComplete={handleFinish} 
+      {view === 'INSTRUCTIONS' && (
+        <InstructionPage 
+          lang={lang} 
+          setLang={setLang} 
+          onProceed={() => setView('QUIZ')} 
         />
       )}
 
+      {view === 'QUIZ' && (
+        <QuizPage questions={quizData.questions} onComplete={handleFinish} />
+      )}
+
       {view === 'RESULT' && (
-        <div className="glass-card fade-in">
-          <h2 className="neon-text">Sprint Finished!</h2>
-          <div className="score-display">
-            <p>Your Score</p>
-            <h1 className="big-score">{finalScore}</h1>
-          </div>
-          <p className="result-note">
-            Top 3 will be announced at 5:30 PM. <br />
-            Great work, {user?.name}!
-          </p>
-        </div>
+        <ResultPage score={finalScore} name={user?.name} />
       )}
     </div>
   );

@@ -193,3 +193,90 @@ input:focus {
   background: #00f2ff;
   color: #000;
 }
+
+/* Result Page Specifics */
+.score-display {
+  margin: 30px 0;
+}
+
+.big-score {
+  font-size: 5rem;
+  color: #00f2ff;
+  text-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+  margin: 10px 0;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* MARQUEE STYLE */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0, 242, 255, 0.1);
+  border-top: 1px solid rgba(0, 242, 255, 0.3);
+  border-bottom: 1px solid rgba(0, 242, 255, 0.3);
+  padding: 10px 0;
+  white-space: nowrap;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 0 20px 20px;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #00f2ff;
+  text-transform: uppercase;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.lang-toggle-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+}
+
+.lang-toggle-container button {
+  background: transparent;
+  border: 1px solid rgba(0, 242, 255, 0.3);
+  color: #00f2ff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.lang-toggle-container button.active {
+  background: #00f2ff;
+  color: black;
+}
+
+.instruction-list {
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 15px;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.instruction-list li {
+  margin-bottom: 12px;
+}
