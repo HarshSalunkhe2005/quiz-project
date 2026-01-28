@@ -16,8 +16,119 @@ body {
 
 .app-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   width: 100vw;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.landing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid #333;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border-color: #00f2ff;
+  box-shadow: 0 0 5px #00f2ff;
+}
+
+.start-btn {
+  background: #00f2ff;
+  color: black;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.start-btn:hover {
+  box-shadow: 0 0 15px #00f2ff;
+  transform: translateY(-2px);
+}
+
+.main-header {
+  width: 100%;
+  max-width: 400px; /* Matches the card width to ensure alignment */
+  margin-top: 40px; 
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 0 20px;   /* Prevents touching screen edges on mobile */
+  box-sizing: border-box;
+}
+
+.neon-text {
+  font-size: 1.8rem; /* Scaled for mobile readability */
+  line-height: 1.2;
+  margin: 0;
+  display: block;   /* Ensures it behaves as a full-width block */
+}
+
+.neon-text {
+  font-size: 1.8rem; /* Scaled for mobile readability */
+  line-height: 1.2;
+  margin: 0;
+  display: block;   /* Ensures it behaves as a full-width block */
+  color: #00f2ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 242, 255, 0.7), 0 0 20px rgba(0, 242, 255, 0.5);
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.quiz-placeholder {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid #00f2ff;
+}
+
+/* A simple spinner for the transition */
+.loading-spinner {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 242, 255, 0.3);
+  border-top: 3px solid #00f2ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
