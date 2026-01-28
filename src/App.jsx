@@ -5,6 +5,7 @@ import QuizPage from './pages/QuizPage';
 import ResultPage from './pages/ResultPage';
 import quizData from './data/questions.json';
 import './styles/App.css';
+import { supabase } from './lib/supabaseClient';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,9 +18,27 @@ function App() {
     setView('INSTRUCTIONS'); 
   };
 
-  const handleFinish = (score, totalMs) => {
+  const handleFinish = async (score, totalMs) => {
     setFinalScore(score);
     setView('RESULT');
+    try {
+      const { error } = await supabase
+        .from('quiz_results') // This must match the table name exactly
+        .insert([
+          { 
+            name: user.name, 
+            school: user.school, 
+            score: score, 
+            total_time_ms: totalMs 
+          }
+        ]);
+
+      if (error) throw error;
+      console.log("Score captured in the cloud! 🚀");
+    } catch (err) {
+      console.error("Database Error:", err.message);
+      // Optional: Alert the user if the score didn't save
+    }
   };
 
   return (
