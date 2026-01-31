@@ -47,7 +47,7 @@ const AdminDashboard = () => {
         <h2 className="neon-text">Live Leaderboard</h2>
         <div className="admin-controls">
             <button onClick={fetchResults} className="refresh-btn" title="Refresh Feed">
-                ↻ REFRESH
+                    ↻ REFRESH
             </button>
         </div>
       </div>
