@@ -28,7 +28,7 @@ const AdminDashboard = () => {
       const { error } = await supabase
         .from('quiz_results')
         .delete()
-        .not('id', 'eq', 0); // Deletes all rows
+        .not('id', 'eq', 0); 
 
       if (error) {
         alert("Error wiping data: " + error.message);
@@ -39,20 +39,24 @@ const AdminDashboard = () => {
     }
   };
 
-  if (loading) return <div className="admin-content">Loading Stats...</div>;
+  if (loading) return <div className="admin-content loading-state">Fetching Real-time Results...</div>;
 
   return (
-    <div className="admin-content">
+    <div className="admin-content fade-in">
       <div className="admin-header-row">
-        <h2 className="neon-text">Leaderboard</h2>
-        <button onClick={fetchResults} className="refresh-btn">Refresh Data</button>
+        <h2 className="neon-text">Live Leaderboard</h2>
+        <button onClick={fetchResults} className="refresh-btn">Refresh Feed</button>
       </div>
 
-      <div className="stats-summary">
-        Total Participants: <strong>{results.length}</strong>
+      <div className="stats-summary-card">
+        <div className="stat-item">
+          <span className="stat-label">Total Participants</span>
+          <span className="stat-value">{results.length}</span>
+        </div>
       </div>
 
-      <div className="table-wrapper">
+      {/* This wrapper controls the scroll logic */}
+      <div className="table-scroll-container">
         <table className="admin-table">
           <thead>
             <tr>
@@ -64,23 +68,31 @@ const AdminDashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {results.map((res, index) => (
-              <tr key={res.id}>
-                <td>{index + 1}</td>
-                <td>{res.name}</td>
-                <td>{res.school}</td>
-                <td>{res.score}</td>
-                <td>{(res.total_time_ms / 1000).toFixed(2)}s</td>
+            {results.length > 0 ? (
+              results.map((res, index) => (
+                <tr key={res.id} className={index < 3 ? `top-rank rank-${index + 1}` : ''}>
+                  <td>{index + 1}</td>
+                  <td className="user-name">{res.name}</td>
+                  <td>{res.school}</td>
+                  <td className="score-cell">{res.score}</td>
+                  <td>{(res.total_time_ms / 1000).toFixed(2)}s</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="empty-msg">No entries found for today.</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
 
-      <div className="danger-zone">
-        <h3>Danger Zone</h3>
-        <p>This action cannot be undone.</p>
-        <button onClick={handleWipeData} className="wipe-btn">Wipe All Table Data</button>
+      <div className="danger-zone-card">
+        <div className="danger-content">
+          <h3>System Reset</h3>
+          <p>Clear all current database records to prepare for next week's sprint.</p>
+        </div>
+        <button onClick={handleWipeData} className="wipe-btn">Wipe All Data</button>
       </div>
     </div>
   );

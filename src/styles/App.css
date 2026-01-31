@@ -280,3 +280,73 @@ input:focus {
 .instruction-list li {
   margin-bottom: 12px;
 }
+
+/* --- Admin Login Refinement --- */
+.admin-auth-overlay .glass-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-input-field {
+  width: 100% !important;
+  max-width: 300px;
+  padding: 15px !important;
+  font-size: 1.1rem !important;
+  border: 2px solid rgba(0, 242, 255, 0.2) !important;
+}
+
+/* --- Professional Tabular Grid --- */
+.table-scroll-container {
+  border: 1px solid var(--accent-cyan);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.admin-table {
+  border-collapse: collapse;
+}
+
+.admin-table th, 
+.admin-table td {
+  border: 1px solid rgba(0, 242, 255, 0.3); /* This creates the tabular grid */
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.admin-table thead th {
+  background: rgba(0, 242, 255, 0.1);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+/* Row Hover effect for better tracking */
+.admin-table tbody tr:hover {
+  background: rgba(0, 242, 255, 0.05);
+}
+
+/* --- Icon Button Row --- */
+.admin-controls-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.icon-btn.delete {
+  border-color: #ff3e3e;
+  color: #ff3e3e;
+}

@@ -3,7 +3,7 @@ import LandingPage from './pages/LandingPage';
 import InstructionPage from './pages/InstructionPage';
 import QuizPage from './pages/QuizPage';
 import ResultPage from './pages/ResultPage';
-import AdminDashboard from './pages/AdminDashboard'; // Import the new page
+import AdminDashboard from './pages/AdminDashboard'; 
 import quizData from './data/questions.json';
 import './styles/App.css';
 import { supabase } from './lib/supabaseClient';
@@ -15,15 +15,24 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [adminPassword, setAdminPassword] = useState('');
 
-  // Admin Secrets from your .env
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
 
-  // Detect /admin on initial load
   useEffect(() => {
+    // 1. Detect /admin URL
     if (window.location.pathname === '/admin') {
       setView('ADMIN_AUTH');
     }
+
+    // 2. Secret Shortcut: Shift + A
+    const handleKeyDown = (e) => {
+      if (e.shiftKey && e.key === 'A') {
+        setView('ADMIN_AUTH');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleStartLanding = (userData) => {
@@ -47,7 +56,7 @@ function App() {
         ]);
 
       if (error) throw error;
-      console.log("Score captured in the cloud! 🚀");
+      console.log("Score captured! 🚀");
     } catch (err) {
       console.error("Database Error:", err.message);
     }
@@ -57,59 +66,68 @@ function App() {
     if (adminPassword === PASS1 || adminPassword === PASS2) {
       setView('ADMIN_DASHBOARD');
     } else {
-      alert('Wrong Password');
+      alert('Access Denied');
+      setAdminPassword('');
     }
   };
 
   return (
     <div className="app-container">
       <header className="main-header">
-        <h1 className="neon-text">{quizData.quizTitle}</h1>
+        <h1 className="neon-text glow">{quizData.quizTitle}</h1>
       </header>
 
-      {view === 'LANDING' && (
-        <LandingPage onStart={handleStartLanding} />
-      )}
+      <main className="content-area">
+        {view === 'LANDING' && (
+          <LandingPage onStart={handleStartLanding} />
+        )}
 
-      {view === 'INSTRUCTIONS' && (
-        <InstructionPage 
-          lang={lang} 
-          setLang={setLang} 
-          onProceed={() => setView('QUIZ')} 
-        />
-      )}
+        {view === 'INSTRUCTIONS' && (
+          <InstructionPage 
+            lang={lang} 
+            setLang={setLang} 
+            onProceed={() => setView('QUIZ')} 
+          />
+        )}
 
-      {view === 'QUIZ' && (
-        <QuizPage questions={quizData.questions} onComplete={handleFinish} />
-      )}
+        {view === 'QUIZ' && (
+          <QuizPage questions={quizData.questions} onComplete={handleFinish} />
+        )}
 
-      {view === 'RESULT' && (
-        <ResultPage score={finalScore} name={user?.name} />
-      )}
+        {view === 'RESULT' && (
+          <ResultPage score={finalScore} name={user?.name} />
+        )}
 
-      {/* ADMIN AUTH VIEW */}
-      {view === 'ADMIN_AUTH' && (
-        <div className="admin-auth-container">
-          <div className="glass-card">
-            <h2 className="neon-text">Admin Access</h2>
-            <input 
-              type="password" 
-              placeholder="Enter Admin Password" 
-              value={adminPassword}
-              onChange={(e) => setAdminPassword(e.target.value)} 
-              className="admin-input"
-            />
-            <button onClick={handleAdminLogin} className="admin-login-btn">
-              Login to Dashboard
-            </button>
+        {/* GLASSMORPHISM ADMIN LOGIN */}
+        {view === 'ADMIN_AUTH' && (
+          <div className="admin-auth-overlay fade-in">
+            <div className="glass-panel">
+              <div className="auth-icon">🔒</div>
+              <h2 className="neon-text">Restricted Access</h2>
+              <p className="auth-subtitle">Authorized Personnel Only</p>
+              <input 
+                type="password" 
+                placeholder="Enter Credential" 
+                value={adminPassword}
+                autoFocus
+                onChange={(e) => setAdminPassword(e.target.value)} 
+                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()}
+                className="admin-input-field"
+              />
+              <button onClick={handleAdminLogin} className="admin-login-btn">
+                Authenticate
+              </button>
+              <button onClick={() => setView('LANDING')} className="back-btn">
+                Exit
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* ADMIN DASHBOARD VIEW */}
-      {view === 'ADMIN_DASHBOARD' && (
-        <AdminDashboard />
-      )}
+        {view === 'ADMIN_DASHBOARD' && (
+          <AdminDashboard />
+        )}
+      </main>
     </div>
   );
 }
