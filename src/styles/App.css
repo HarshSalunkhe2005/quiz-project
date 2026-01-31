@@ -350,3 +350,66 @@ input:focus {
   border-color: #ff3e3e;
   color: #ff3e3e;
 }
+
+/* --- NEON PULSE BUTTONS --- */
+.admin-login-btn, .refresh-btn, .wipe-btn, .back-btn {
+  background: transparent !important;
+  border: 2px solid var(--accent-cyan) !important;
+  color: var(--accent-cyan) !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 242, 255, 0.2);
+}
+
+/* Hover State - The "Power On" Effect */
+.admin-login-btn:hover, .refresh-btn:hover {
+  background: rgba(0, 242, 255, 0.1) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.6), inset 0 0 10px rgba(0, 242, 255, 0.4) !important;
+  transform: scale(1.02);
+  text-shadow: 0 0 8px var(--accent-cyan);
+}
+
+/* Danger Button Variation (Wipe) */
+.wipe-btn {
+  border-color: #ff3e3e !important;
+  color: #ff3e3e !important;
+}
+
+.wipe-btn:hover {
+  background: rgba(255, 62, 62, 0.1) !important;
+  box-shadow: 0 0 20px rgba(255, 62, 62, 0.6), inset 0 0 10px rgba(255, 62, 62, 0.4) !important;
+  text-shadow: 0 0 8px #ff3e3e;
+}
+
+/* Click Effect */
+.admin-login-btn:active, .refresh-btn:active, .wipe-btn:active {
+  transform: scale(0.95);
+  filter: brightness(1.5);
+}
+
+/* Back Button (Subtle) */
+.back-btn {
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 0.7rem;
+  padding: 5px 15px;
+  margin-top: 20px;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}

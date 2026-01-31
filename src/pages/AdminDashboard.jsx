@@ -45,12 +45,19 @@ const AdminDashboard = () => {
     <div className="admin-content fade-in">
       <div className="admin-header-row">
         <h2 className="neon-text">Live Leaderboard</h2>
-        <button onClick={fetchResults} className="refresh-btn">Refresh Feed</button>
+        <div className="admin-controls">
+            <button onClick={fetchResults} className="refresh-btn" title="Refresh Feed">
+                ↻ REFRESH
+            </button>
+            <button onClick={handleWipeData} className="wipe-btn" title="Wipe All Data">
+                🗑 WIPE
+            </button>
+        </div>
       </div>
 
       <div className="stats-summary-card">
         <div className="stat-item">
-          <span className="stat-label">Total Participants</span>
+          <span className="stat-label">Total Participants:</span>
           <span className="stat-value">{results.length}</span>
         </div>
       </div>
