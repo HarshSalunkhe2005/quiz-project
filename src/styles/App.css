@@ -301,12 +301,15 @@ input:focus {
 .table-scroll-container {
   border: 1px solid var(--accent-cyan);
   background: rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .admin-table {
-  width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
   table-layout: fixed; /* This forces columns to respect widths */
+  margin: 0;
 }
 
 .admin-table th, 
