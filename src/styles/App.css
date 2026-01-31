@@ -303,6 +303,7 @@ input:focus {
   background: rgba(0, 0, 0, 0.4);
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: 250px;
 }
 
 .admin-table {
