@@ -304,7 +304,9 @@ input:focus {
 }
 
 .admin-table {
+  width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* This forces columns to respect widths */
 }
 
 .admin-table th, 
@@ -312,6 +314,7 @@ input:focus {
   border: 1px solid rgba(0, 242, 255, 0.3); /* This creates the tabular grid */
   padding: 12px 15px;
   text-align: center;
+  width: auto;
 }
 
 .admin-table thead th {
