@@ -49,16 +49,13 @@ const AdminDashboard = () => {
             <button onClick={fetchResults} className="refresh-btn" title="Refresh Feed">
                 ↻ REFRESH
             </button>
-            <button onClick={handleWipeData} className="wipe-btn" title="Wipe All Data">
-                🗑 WIPE
-            </button>
         </div>
       </div>
 
       <div className="stats-summary-card">
         <div className="stat-item">
-          <span className="stat-label">Total Participants:</span>
-          <span className="stat-value">{results.length}</span>
+          <span className="stat-label">Total Participants: </span>
+          <span className="stat-value"> {results.length}</span>
         </div>
       </div>
 
@@ -99,7 +96,7 @@ const AdminDashboard = () => {
           <h3>System Reset</h3>
           <p>Clear all current database records to prepare for next week's sprint.</p>
         </div>
-        <button onClick={handleWipeData} className="wipe-btn">Wipe All Data</button>
+        <button onClick={handleWipeData} className="wipe-btn">🗑 WIPE All Data</button>
       </div>
     </div>
   );
