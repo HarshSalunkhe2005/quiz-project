@@ -4,6 +4,8 @@ import InstructionPage from './pages/InstructionPage';
 import QuizPage from './pages/QuizPage';
 import ResultPage from './pages/ResultPage';
 import AdminDashboard from './pages/AdminDashboard'; 
+import PreSprintPage from './pages/PreSprintPage';
+import PostSprintPage from './pages/PostSprintPage';
 import quizData from './data/questions.json';
 import './styles/App.css';
 import { supabase } from './lib/supabaseClient';
@@ -17,6 +19,14 @@ function App() {
 
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
+
+  // Time Logic
+  const now = new Date();
+  const currentHour = now.getHours();
+  const isBeforeSprint = currentHour < 11;
+  const isAfterSprint = currentHour >= 17;
+  const isLive = !isBeforeSprint && !isAfterSprint;
+  const isAdminView = view === 'ADMIN_AUTH' || view === 'ADMIN_DASHBOARD';
 
   useEffect(() => {
     // 1. Detect /admin URL
@@ -78,8 +88,12 @@ function App() {
       </header>
 
       <main className="content-area">
-        {view === 'LANDING' && (
-          <LandingPage onStart={handleStartLanding} />
+        {view === 'LANDING' && !isAdminView && (
+          <>
+            {isBeforeSprint && <PreSprintPage />}
+            {isAfterSprint && <PostSprintPage />}
+            {isLive && <LandingPage onStart={handleStartLanding} />}
+          </>
         )}
 
         {view === 'INSTRUCTIONS' && (
