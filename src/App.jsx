@@ -6,9 +6,11 @@ import ResultPage from './pages/ResultPage';
 import AdminDashboard from './pages/AdminDashboard'; 
 import PreSprintPage from './pages/PreSprintPage';
 import PostSprintPage from './pages/PostSprintPage';
+import SecurityErrorPage from './pages/SecurityErrorPage';
 import quizData from './data/questions.json';
 import './styles/App.css';
 import { supabase } from './lib/supabaseClient';
+import { isIST } from './utils/security';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,7 +22,8 @@ function App() {
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
 
-  // Time Logic
+  // Security & Time Logic
+  const isTimezoneValid = isIST();
   const now = new Date();
   const currentHour = now.getHours();
   const isBeforeSprint = currentHour < 11;
@@ -29,12 +32,10 @@ function App() {
   const isAdminView = view === 'ADMIN_AUTH' || view === 'ADMIN_DASHBOARD';
 
   useEffect(() => {
-    // 1. Detect /admin URL
     if (window.location.pathname === '/admin') {
       setView('ADMIN_AUTH');
     }
 
-    // 2. Secret Shortcut: Shift + A
     const handleKeyDown = (e) => {
       if (e.shiftKey && e.key === 'A') {
         setView('ADMIN_AUTH');
@@ -90,9 +91,15 @@ function App() {
       <main className="content-area">
         {view === 'LANDING' && !isAdminView && (
           <>
-            {isBeforeSprint && <PreSprintPage />}
-            {isAfterSprint && <PostSprintPage />}
-            {isLive && <LandingPage onStart={handleStartLanding} />}
+            {!isTimezoneValid ? (
+              <SecurityErrorPage />
+            ) : (
+              <>
+                {isBeforeSprint && <PreSprintPage />}
+                {isAfterSprint && <PostSprintPage />}
+                {isLive && <LandingPage onStart={handleStartLanding} />}
+              </>
+            )}
           </>
         )}
 
@@ -112,7 +119,6 @@ function App() {
           <ResultPage score={finalScore} name={user?.name} />
         )}
 
-        {/* GLASSMORPHISM ADMIN LOGIN */}
         {view === 'ADMIN_AUTH' && (
           <div className="admin-auth-overlay fade-in">
             <div className="glass-panel">
