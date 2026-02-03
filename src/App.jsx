@@ -11,6 +11,7 @@ import quizData from './data/questions.json';
 import './styles/App.css';
 import { supabase } from './lib/supabaseClient';
 import { isIST } from './utils/security';
+import { getServerHour } from './services/timeService';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,19 +20,33 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [adminPassword, setAdminPassword] = useState('');
 
+  // 1. Added state for server-verified time and loading status
+  const [serverHour, setServerHour] = useState(null);
+  const [isLoadingTime, setIsLoadingTime] = useState(true);
+
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
 
   // Security & Time Logic
   const isTimezoneValid = isIST();
-  const now = new Date();
-  const currentHour = now.getHours();
-  const isBeforeSprint = currentHour < 11;
-  const isAfterSprint = currentHour >= 17;
+  
+  // 2. Modified logic to prioritize serverHour over local system hour
+  const effectiveHour = /*serverHour !== null ? serverHour :*/ new Date().getHours();
+  
+  const isBeforeSprint = effectiveHour < 11;
+  const isAfterSprint = effectiveHour >= 17;
   const isLive = !isBeforeSprint && !isAfterSprint;
   const isAdminView = view === 'ADMIN_AUTH' || view === 'ADMIN_DASHBOARD';
 
   useEffect(() => {
+    // 3. New useEffect to sync time from worldclock API on mount
+    const syncTime = async () => {
+      const sHour = await getServerHour();
+      setServerHour(sHour);
+      setIsLoadingTime(false);
+    };
+    syncTime();
+
     if (window.location.pathname === '/admin') {
       setView('ADMIN_AUTH');
     }
@@ -81,6 +96,20 @@ function App() {
       setAdminPassword('');
     }
   };
+
+  /*// 4. Added Loading screen to prevent UI flickering before time is verified
+  if (isLoadingTime && !isAdminView) {
+    return (
+      <div className="app-container">
+        <main className="content-area">
+          <div className="glass-card fade-in">
+            <h2 className="neon-text">Syncing with Server...</h2>
+            <p>Verifying competition window status.</p>
+          </div>
+        </main>
+      </div>
+    );
+  }*/
 
   return (
     <div className="app-container">
