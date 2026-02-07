@@ -7,6 +7,10 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [isDoubleGuardEnabled, setIsDoubleGuardEnabled] = useState(false);
   const [isAntiRefreshEnabled, setIsAntiRefreshEnabled] = useState(false);
+  const [startTime, setStartTime] = useState(11);
+  const [startMin, setStartMin] = useState(0);
+  const [endTime, setEndTime] = useState(17);
+  const [endMin, setEndMin] = useState(0);
   const [showSettings, setShowSettings] = useState(false);
 
   const fetchResults = async () => {
@@ -26,8 +30,17 @@ const AdminDashboard = () => {
     if (!error && data) {
       const dg = data.find(s => s.key === 'double_guard_enabled');
       const ar = data.find(s => s.key === 'anti_refresh_enabled');
-      if (dg) setIsDoubleGuardEnabled(dg.value);
-      if (ar) setIsAntiRefreshEnabled(ar.value);
+      const st = data.find(s => s.key === 'start_time');
+      const sm = data.find(s => s.key === 'start_min');
+      const et = data.find(s => s.key === 'end_time');
+      const em = data.find(s => s.key === 'end_min');
+      
+      if (dg) setIsDoubleGuardEnabled(dg.value === 'true');
+      if (ar) setIsAntiRefreshEnabled(ar.value === 'true');
+      if (st) setStartTime(Number(st.value));
+      if (sm) setStartMin(Number(sm.value));
+      if (et) setEndTime(Number(et.value));
+      if (em) setEndMin(Number(em.value));
     }
   };
 
@@ -38,7 +51,7 @@ const AdminDashboard = () => {
 
   const updateSetting = async (key, value, setter) => {
     setter(value);
-    await supabase.from('app_settings').update({ value }).eq('key', key);
+    await supabase.from('app_settings').update({ value: String(value) }).eq('key', key);
   };
 
   const handleExportExcel = () => {
@@ -67,7 +80,6 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-content fade-in">
-      {/* Absolute Positioned Settings - Top Left Corner */}
       <div className="top-left-settings">
         <button onClick={() => setShowSettings(!showSettings)} className="security-toggle-btn">
           ⚙️ SECURITY
@@ -83,6 +95,27 @@ const AdminDashboard = () => {
               <span>Anti-Refresh</span>
               <input type="checkbox" checked={isAntiRefreshEnabled} 
                 onChange={(e) => updateSetting('anti_refresh_enabled', e.target.checked, setIsAntiRefreshEnabled)} />
+            </div>
+            <hr style={{opacity: 0.2}} />
+            <div className="setting-item">
+              <span>Start (HH:MM)</span>
+              <div style={{display: 'flex', gap: '4px'}}>
+                <input type="number" value={startTime} style={{width: '42px'}}
+                  onChange={(e) => updateSetting('start_time', e.target.value, setStartTime)} />
+                <span>:</span>
+                <input type="number" value={startMin} style={{width: '42px'}}
+                  onChange={(e) => updateSetting('start_min', e.target.value, setStartMin)} />
+              </div>
+            </div>
+            <div className="setting-item">
+              <span>End (HH:MM)</span>
+              <div style={{display: 'flex', gap: '4px'}}>
+                <input type="number" value={endTime} style={{width: '42px'}}
+                  onChange={(e) => updateSetting('end_time', e.target.value, setEndTime)} />
+                <span>:</span>
+                <input type="number" value={endMin} style={{width: '42px'}}
+                  onChange={(e) => updateSetting('end_min', e.target.value, setEndMin)} />
+              </div>
             </div>
           </div>
         )}
