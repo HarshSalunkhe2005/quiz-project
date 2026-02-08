@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
-import * as XLSX from 'xlsx'; // Import the Excel library
+import * as XLSX from 'xlsx';
 
 const AdminDashboard = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isDoubleGuardEnabled, setIsDoubleGuardEnabled] = useState(false);
+  const [isAntiRefreshEnabled, setIsAntiRefreshEnabled] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const fetchResults = async () => {
     setLoading(true);
@@ -18,67 +21,79 @@ const AdminDashboard = () => {
     setLoading(false);
   };
 
+  const fetchSettings = async () => {
+    const { data, error } = await supabase.from('app_settings').select('*');
+    if (!error && data) {
+      const dg = data.find(s => s.key === 'double_guard_enabled');
+      const ar = data.find(s => s.key === 'anti_refresh_enabled');
+      if (dg) setIsDoubleGuardEnabled(dg.value);
+      if (ar) setIsAntiRefreshEnabled(ar.value);
+    }
+  };
+
   useEffect(() => {
     fetchResults();
+    fetchSettings();
   }, []);
 
-  // --- NEW EXCEL EXPORT LOGIC ---
-  const handleExportExcel = () => {
-    if (results.length === 0) {
-      alert("No data to export!");
-      return;
-    }
+  const updateSetting = async (key, value, setter) => {
+    setter(value);
+    await supabase.from('app_settings').update({ value }).eq('key', key);
+  };
 
-    // 1. Format the data for Excel
+  const handleExportExcel = () => {
+    if (results.length === 0) return alert("No data to export!");
     const excelData = results.map((res, index) => ({
       Rank: index + 1,
       Name: res.name,
       School: res.school,
       Score: res.score,
-      "Time (seconds)": (res.total_time_ms / 1000).toFixed(2)
+      "Time (s)": (res.total_time_ms / 1000).toFixed(2)
     }));
-
-    // 2. Create worksheet and workbook
     const worksheet = XLSX.utils.json_to_sheet(excelData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sprint Results");
-
-    // 3. Generate dynamic filename with current date
-    const date = new Date().toLocaleDateString('en-GB').replace(/\//g, '_');
-    const fileName = `results_${date}.xlsx`;
-
-    // 4. Trigger download
-    XLSX.writeFile(workbook, fileName);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Results");
+    XLSX.writeFile(workbook, `results_${new Date().toLocaleDateString()}.xlsx`);
   };
 
   const handleWipeData = async () => {
-    const confirmWipe = window.confirm("ARE YOU SURE? This will permanently delete ALL student scores for next Sunday.");
-    if (confirmWipe) {
+    if (window.confirm("ARE YOU SURE? This wipes all scores.")) {
       const { error } = await supabase.from('quiz_results').delete().not('id', 'eq', 0);
-      if (error) alert("Error: " + error.message);
-      else {
-        alert("Table wiped successfully!");
-        fetchResults();
-      }
+      if (!error) fetchResults();
     }
   };
 
-  if (loading) return <div className="admin-content">Fetching Real-time Results...</div>;
+  if (loading) return <div className="admin-content">Fetching Results...</div>;
 
   return (
     <div className="admin-content fade-in">
+      {/* Absolute Positioned Settings - Top Left Corner */}
+      <div className="top-left-settings">
+        <button onClick={() => setShowSettings(!showSettings)} className="security-toggle-btn">
+          ⚙️ SECURITY
+        </button>
+        {showSettings && (
+          <div className="settings-dropdown glass-panel fade-in">
+            <div className="setting-item">
+              <span>Double Guard</span>
+              <input type="checkbox" checked={isDoubleGuardEnabled} 
+                onChange={(e) => updateSetting('double_guard_enabled', e.target.checked, setIsDoubleGuardEnabled)} />
+            </div>
+            <div className="setting-item">
+              <span>Anti-Refresh</span>
+              <input type="checkbox" checked={isAntiRefreshEnabled} 
+                onChange={(e) => updateSetting('anti_refresh_enabled', e.target.checked, setIsAntiRefreshEnabled)} />
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="admin-header-row">
         <h2 className="neon-text">Live Leaderboard</h2>
         <div className="admin-controls">
-          <button onClick={handleExportExcel} className="refresh-btn" title="Export to Excel">
-              📊 EXPORT
-          </button>
-          <button onClick={fetchResults} className="refresh-btn" title="Refresh Feed">
-              ↻ REFRESH
-          </button>
-          <button onClick={handleWipeData} className="wipe-btn" title="Wipe All Data">
-              🗑 WIPE
-          </button>
+          <button onClick={handleExportExcel} className="refresh-btn">📊 EXPORT</button>
+          <button onClick={fetchResults} className="refresh-btn">↻ REFRESH</button>
+          <button onClick={handleWipeData} className="wipe-btn">🗑 WIPE</button>
         </div>
       </div>
 
@@ -92,13 +107,7 @@ const AdminDashboard = () => {
       <div className="table-scroll-container">
         <table className="admin-table">
           <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>School</th>
-              <th>Score</th>
-              <th>Time (s)</th>
-            </tr>
+            <tr><th>Rank</th><th>Name</th><th>School</th><th>Score</th><th>Time (s)</th></tr>
           </thead>
           <tbody>
             {results.length > 0 ? (
@@ -112,9 +121,7 @@ const AdminDashboard = () => {
                 </tr>
               ))
             ) : (
-              <tr>
-                <td colSpan="5">No entries found.</td>
-              </tr>
+              <tr><td colSpan="5">No entries found.</td></tr>
             )}
           </tbody>
         </table>

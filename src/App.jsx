@@ -20,18 +20,14 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [adminPassword, setAdminPassword] = useState('');
 
-  // 1. Added state for server-verified time and loading status
   const [serverHour, setServerHour] = useState(null);
   const [isLoadingTime, setIsLoadingTime] = useState(true);
+  const [alreadyParticipated, setAlreadyParticipated] = useState(false);
 
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
-
-  // Security & Time Logic
   const isTimezoneValid = isIST();
-  
-  // 2. Modified logic to prioritize serverHour over local system hour
-  const effectiveHour = /*serverHour !== null ? serverHour :*/ new Date().getHours();
+  const effectiveHour = new Date().getHours();
   
   const isBeforeSprint = effectiveHour < 11;
   const isAfterSprint = effectiveHour >= 17;
@@ -39,22 +35,33 @@ function App() {
   const isAdminView = view === 'ADMIN_AUTH' || view === 'ADMIN_DASHBOARD';
 
   useEffect(() => {
-    // 3. New useEffect to sync time from worldclock API on mount
-    const syncTime = async () => {
+    const checkSecurity = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      const hasLock = localStorage.getItem(`sprint_lock_${today}`);
+
+      // Fetch Anti-Refresh Toggle Status
+      const { data } = await supabase
+        .from('app_settings')
+        .select('value')
+        .eq('key', 'anti_refresh_enabled')
+        .single();
+
+      // Only block if toggle is ON AND local lock exists
+      if (data?.value && hasLock) {
+        setAlreadyParticipated(true);
+      }
+
       const sHour = await getServerHour();
       setServerHour(sHour);
       setIsLoadingTime(false);
     };
-    syncTime();
 
-    if (window.location.pathname === '/admin') {
-      setView('ADMIN_AUTH');
-    }
+    checkSecurity();
+
+    if (window.location.pathname === '/admin') setView('ADMIN_AUTH');
 
     const handleKeyDown = (e) => {
-      if (e.shiftKey && e.key === 'A') {
-        setView('ADMIN_AUTH');
-      }
+      if (e.shiftKey && e.key === 'A') setView('ADMIN_AUTH');
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -62,6 +69,8 @@ function App() {
   }, []);
 
   const handleStartLanding = (userData) => {
+    const today = new Date().toISOString().split('T')[0];
+    localStorage.setItem(`sprint_lock_${today}`, 'true');
     setUser(userData);
     setView('INSTRUCTIONS'); 
   };
@@ -70,112 +79,59 @@ function App() {
     setFinalScore(score);
     setView('RESULT');
     try {
-      const { error } = await supabase
-        .from('quiz_results')
-        .insert([
-          { 
-            name: user.name, 
-            school: user.school, 
-            score: score, 
-            total_time_ms: totalMs 
-          }
-        ]);
-
-      if (error) throw error;
-      console.log("Score captured! 🚀");
-    } catch (err) {
-      console.error("Database Error:", err.message);
-    }
+      await supabase.from('quiz_results').insert([
+        { name: user.name, school: user.school, score: score, total_time_ms: totalMs }
+      ]);
+    } catch (err) { console.error("Database Error:", err.message); }
   };
 
   const handleAdminLogin = () => {
-    if (adminPassword === PASS1 || adminPassword === PASS2) {
-      setView('ADMIN_DASHBOARD');
-    } else {
-      alert('Access Denied');
-      setAdminPassword('');
-    }
+    if (adminPassword === PASS1 || adminPassword === PASS2) setView('ADMIN_DASHBOARD');
+    else { alert('Access Denied'); setAdminPassword(''); }
   };
-
-  /*// 4. Added Loading screen to prevent UI flickering before time is verified
-  if (isLoadingTime && !isAdminView) {
-    return (
-      <div className="app-container">
-        <main className="content-area">
-          <div className="glass-card fade-in">
-            <h2 className="neon-text">Syncing with Server...</h2>
-            <p>Verifying competition window status.</p>
-          </div>
-        </main>
-      </div>
-    );
-  }*/
 
   return (
     <div className="app-container">
       <header className="main-header">
         <h1 className="neon-text glow">{quizData.quizTitle}</h1>
       </header>
-
       <main className="content-area">
         {view === 'LANDING' && !isAdminView && (
           <>
-            {!isTimezoneValid ? (
-              <SecurityErrorPage />
-            ) : (
+            {!isTimezoneValid ? <SecurityErrorPage /> : (
               <>
-                {isBeforeSprint && <PreSprintPage />}
-                {isAfterSprint && <PostSprintPage />}
-                {isLive && <LandingPage onStart={handleStartLanding} />}
+                {alreadyParticipated ? (
+                  <div className="glass-card fade-in">
+                    <div className="status-icon">✅</div>
+                    <h2 className="neon-text">Sprint Completed</h2>
+                    <p>You have already participated in today's competition.</p>
+                  </div>
+                ) : (
+                  <>
+                    {isBeforeSprint && <PreSprintPage />}
+                    {isAfterSprint && <PostSprintPage />}
+                    {isLive && <LandingPage onStart={handleStartLanding} />}
+                  </>
+                )}
               </>
             )}
           </>
         )}
-
-        {view === 'INSTRUCTIONS' && (
-          <InstructionPage 
-            lang={lang} 
-            setLang={setLang} 
-            onProceed={() => setView('QUIZ')} 
-          />
-        )}
-
-        {view === 'QUIZ' && (
-          <QuizPage questions={quizData.questions} onComplete={handleFinish} />
-        )}
-
-        {view === 'RESULT' && (
-          <ResultPage score={finalScore} name={user?.name} />
-        )}
-
+        {view === 'INSTRUCTIONS' && <InstructionPage lang={lang} setLang={setLang} onProceed={() => setView('QUIZ')} />}
+        {view === 'QUIZ' && <QuizPage questions={quizData.questions} onComplete={handleFinish} />}
+        {view === 'RESULT' && <ResultPage score={finalScore} name={user?.name} />}
         {view === 'ADMIN_AUTH' && (
           <div className="admin-auth-overlay fade-in">
             <div className="glass-panel">
-              <div className="auth-icon">🔒</div>
               <h2 className="neon-text">Restricted Access</h2>
-              <p className="auth-subtitle">Authorized Personnel Only</p>
-              <input 
-                type="password" 
-                placeholder="Enter Credential" 
-                value={adminPassword}
-                autoFocus
-                onChange={(e) => setAdminPassword(e.target.value)} 
-                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()}
-                className="admin-input-field"
-              />
-              <button onClick={handleAdminLogin} className="admin-login-btn">
-                Authenticate
-              </button>
-              <button onClick={() => setView('LANDING')} className="back-btn">
-                Exit
-              </button>
+              <input type="password" value={adminPassword} autoFocus onChange={(e) => setAdminPassword(e.target.value)} 
+                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()} className="admin-input-field" />
+              <button onClick={handleAdminLogin} className="admin-login-btn">Authenticate</button>
+              <button onClick={() => setView('LANDING')} className="back-btn">Exit</button>
             </div>
           </div>
         )}
-
-        {view === 'ADMIN_DASHBOARD' && (
-          <AdminDashboard />
-        )}
+        {view === 'ADMIN_DASHBOARD' && <AdminDashboard />}
       </main>
     </div>
   );

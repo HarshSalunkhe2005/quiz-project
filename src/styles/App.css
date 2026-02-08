@@ -420,3 +420,59 @@ input:focus {
   width: 100%;
   margin-bottom: 20px;
 }
+
+/* Admin Layout Stability */
+.admin-content {
+  position: relative; /* Context for absolute children */
+  width: 100%;
+  max-width: 900px;
+  padding-top: 50px; /* Space for the floating button */
+}
+
+/* Float the security menu to the top left */
+.top-left-settings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.security-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.security-toggle-btn:hover {
+  background: rgba(0, 242, 255, 0.1);
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 180px;
+  padding: 15px;
+  background: rgba(10, 10, 12, 0.95) !important;
+  border: 1px solid var(--accent-cyan) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: white;
+}
