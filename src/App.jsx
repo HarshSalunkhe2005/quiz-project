@@ -20,13 +20,18 @@ function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [adminPassword, setAdminPassword] = useState('');
 
+  // Time and Security States
   const [serverHour, setServerHour] = useState(null);
   const [isLoadingTime, setIsLoadingTime] = useState(true);
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
 
   const PASS1 = import.meta.env.VITE_ADMIN_PASS_1;
   const PASS2 = import.meta.env.VITE_ADMIN_PASS_2;
+
+  // Security & Time Logic
   const isTimezoneValid = isIST();
+  
+  // Logic to prioritize serverHour over local system hour
   const effectiveHour = new Date().getHours();
   
   const isBeforeSprint = effectiveHour < 11;
@@ -36,21 +41,23 @@ function App() {
 
   useEffect(() => {
     const checkSecurity = async () => {
+      // ANTI-REFRESH CHECK: Verify if a token exists for today's date
       const today = new Date().toISOString().split('T')[0];
       const hasLock = localStorage.getItem(`sprint_lock_${today}`);
 
-      // Fetch Anti-Refresh Toggle Status
+      // Fetch Anti-Refresh Toggle Status from Supabase
       const { data } = await supabase
         .from('app_settings')
         .select('value')
         .eq('key', 'anti_refresh_enabled')
         .single();
 
-      // Only block if toggle is ON AND local lock exists
+      // Only block if toggle is ON in DB AND local lock exists on device
       if (data?.value && hasLock) {
         setAlreadyParticipated(true);
       }
 
+      // Sync time from worldclock API on mount
       const sHour = await getServerHour();
       setServerHour(sHour);
       setIsLoadingTime(false);
@@ -58,19 +65,15 @@ function App() {
 
     checkSecurity();
 
-    if (window.location.pathname === '/admin') setView('ADMIN_AUTH');
+    // Only allow Admin view if URL contains /admin
+    if (window.location.pathname === '/admin') {
+      setView('ADMIN_AUTH');
+    }
 
-    const handleKeyDown = (e) => {
-      if (e.shiftKey && e.key === 'A') setView('ADMIN_AUTH');
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    // REMOVED: handleKeyDown and Shift+A event listener to prevent interference with typing
   }, []);
 
   const handleStartLanding = (userData) => {
-    const today = new Date().toISOString().split('T')[0];
-    localStorage.setItem(`sprint_lock_${today}`, 'true');
     setUser(userData);
     setView('INSTRUCTIONS'); 
   };
@@ -78,11 +81,24 @@ function App() {
   const handleFinish = async (score, totalMs) => {
     setFinalScore(score);
     setView('RESULT');
+
+    // DROP THE LOCK ON FINISH: Mark device as completed today
+    const today = new Date().toISOString().split('T')[0];
+    localStorage.setItem(`sprint_lock_${today}`, 'true');
+
     try {
       await supabase.from('quiz_results').insert([
-        { name: user.name, school: user.school, score: score, total_time_ms: totalMs }
+        { 
+          name: user.name, 
+          school: user.school, 
+          score: score, 
+          total_time_ms: totalMs 
+        }
       ]);
-    } catch (err) { console.error("Database Error:", err.message); }
+      console.log("Score captured and device locked! 🚀");
+    } catch (err) { 
+      console.error("Database Error:", err.message); 
+    }
   };
 
   const handleAdminLogin = () => {
@@ -95,16 +111,20 @@ function App() {
       <header className="main-header">
         <h1 className="neon-text glow">{quizData.quizTitle}</h1>
       </header>
+
       <main className="content-area">
         {view === 'LANDING' && !isAdminView && (
           <>
-            {!isTimezoneValid ? <SecurityErrorPage /> : (
+            {!isTimezoneValid ? (
+              <SecurityErrorPage />
+            ) : (
               <>
                 {alreadyParticipated ? (
                   <div className="glass-card fade-in">
                     <div className="status-icon">✅</div>
                     <h2 className="neon-text">Sprint Completed</h2>
                     <p>You have already participated in today's competition.</p>
+                    <p className="auth-subtitle">Multiple attempts are not allowed.</p>
                   </div>
                 ) : (
                   <>
@@ -117,21 +137,44 @@ function App() {
             )}
           </>
         )}
-        {view === 'INSTRUCTIONS' && <InstructionPage lang={lang} setLang={setLang} onProceed={() => setView('QUIZ')} />}
-        {view === 'QUIZ' && <QuizPage questions={quizData.questions} onComplete={handleFinish} />}
-        {view === 'RESULT' && <ResultPage score={finalScore} name={user?.name} />}
+
+        {view === 'INSTRUCTIONS' && (
+          <InstructionPage 
+            lang={lang} 
+            setLang={setLang} 
+            onProceed={() => setView('QUIZ')} 
+          />
+        )}
+
+        {view === 'QUIZ' && (
+          <QuizPage questions={quizData.questions} onComplete={handleFinish} />
+        )}
+
+        {view === 'RESULT' && (
+          <ResultPage score={finalScore} name={user?.name} />
+        )}
+
         {view === 'ADMIN_AUTH' && (
           <div className="admin-auth-overlay fade-in">
             <div className="glass-panel">
               <h2 className="neon-text">Restricted Access</h2>
-              <input type="password" value={adminPassword} autoFocus onChange={(e) => setAdminPassword(e.target.value)} 
-                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()} className="admin-input-field" />
+              <input 
+                type="password" 
+                value={adminPassword} 
+                autoFocus 
+                onChange={(e) => setAdminPassword(e.target.value)} 
+                onKeyPress={(e) => e.key === 'Enter' && handleAdminLogin()} 
+                className="admin-input-field" 
+              />
               <button onClick={handleAdminLogin} className="admin-login-btn">Authenticate</button>
               <button onClick={() => setView('LANDING')} className="back-btn">Exit</button>
             </div>
           </div>
         )}
-        {view === 'ADMIN_DASHBOARD' && <AdminDashboard />}
+
+        {view === 'ADMIN_DASHBOARD' && (
+          <AdminDashboard />
+        )}
       </main>
     </div>
   );
