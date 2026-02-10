@@ -24,6 +24,102 @@
       ],
       "correctAnswer": "Voice assistant (Alexa, Siri)",
       "timer": 15
+    },
+    {
+      "id": 3,
+      "text": "Which company developed the AI chatbot called ChatGPT?",
+      "options": [
+        "Google",
+        "Microsoft",
+        "OpenAI",
+        "Meta"
+      ],
+      "correctAnswer": "OpenAI",
+      "timer": 15
+    },
+    {
+      "id": 4,
+      "text": "What is the primary goal of Machine Learning?",
+      "options": [
+        "To make computers run faster",
+        "To allow systems to learn from data",
+        "To create physical robots",
+        "To replace human eyes"
+      ],
+      "correctAnswer": "To allow systems to learn from data",
+      "timer": 15
+    },
+    {
+      "id": 5,
+      "text": "Which AI technology allows computers to 'see' and interpret images?",
+      "options": [
+        "Natural Language Processing",
+        "Computer Vision",
+        "Speech Recognition",
+        "Data Mining"
+      ],
+      "correctAnswer": "Computer Vision",
+      "timer": 15
+    },
+    {
+      "id": 6,
+      "text": "What does NLP stand for in the context of AI?",
+      "options": [
+        "New Logic Programming",
+        "Natural Language Processing",
+        "Network Link Protocol",
+        "Node Level Processing"
+      ],
+      "correctAnswer": "Natural Language Processing",
+      "timer": 15
+    },
+    {
+      "id": 7,
+      "text": "Which of these is used to train AI models?",
+      "options": [
+        "Large Datasets",
+        "A printer",
+        "A joystick",
+        "Empty folders"
+      ],
+      "correctAnswer": "Large Datasets",
+      "timer": 15
+    },
+    {
+      "id": 8,
+      "text": "In AI, what is a 'Neural Network' inspired by?",
+      "options": [
+        "A spider web",
+        "The human brain",
+        "Electrical circuits",
+        "Social media"
+      ],
+      "correctAnswer": "The human brain",
+      "timer": 15
+    },
+    {
+      "id": 9,
+      "text": "Self-driving cars primarily use which technology to navigate?",
+      "options": [
+        "Bluetooth only",
+        "AI and Sensors",
+        "Radio waves",
+        "Remote controls"
+      ],
+      "correctAnswer": "AI and Sensors",
+      "timer": 15
+    },
+    {
+      "id": 10,
+      "text": "Which AI is designed to simulate human conversation?",
+      "options": [
+        "Spreadsheet",
+        "Operating System",
+        "Chatbot",
+        "Antivirus"
+      ],
+      "correctAnswer": "Chatbot",
+      "timer": 15
     }
   ]
 }
