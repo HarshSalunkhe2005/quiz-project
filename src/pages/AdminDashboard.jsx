@@ -4,6 +4,7 @@ import * as XLSX from 'xlsx';
 
 const AdminDashboard = () => {
   const [results, setResults] = useState([]);
+  const [totalParticipants, setTotalParticipants] = useState(0); // For the REAL count
   const [loading, setLoading] = useState(true);
   const [isDoubleGuardEnabled, setIsDoubleGuardEnabled] = useState(false);
   const [isAntiRefreshEnabled, setIsAntiRefreshEnabled] = useState(false);
@@ -15,13 +16,24 @@ const AdminDashboard = () => {
 
   const fetchResults = async () => {
     setLoading(true);
+    
+    // 1. Fetch filtered leaderboard data
     const { data, error } = await supabase
       .from('quiz_results')
       .select('*')
+      .gte('score', 50)
       .order('score', { ascending: false })
       .order('total_time_ms', { ascending: true });
 
     if (!error) setResults(data);
+
+    // 2. Fetch REAL total count (all entries regardless of score)
+    const { count, error: countError } = await supabase
+      .from('quiz_results')
+      .select('*', { count: 'exact', head: true });
+
+    if (!countError) setTotalParticipants(count || 0);
+
     setLoading(false);
   };
 
@@ -133,6 +145,10 @@ const AdminDashboard = () => {
       <div className="stats-summary-card">
         <div className="stat-item">
           <span className="stat-label">Total Participants: </span>
+          <span className="stat-value">{totalParticipants}</span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">Qualifiers (50+): </span>
           <span className="stat-value">{results.length}</span>
         </div>
       </div>
@@ -154,7 +170,7 @@ const AdminDashboard = () => {
                 </tr>
               ))
             ) : (
-              <tr><td colSpan="5">No entries found.</td></tr>
+              <tr><td colSpan="5">No qualifiers found.</td></tr>
             )}
           </tbody>
         </table>
