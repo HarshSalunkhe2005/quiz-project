@@ -14,17 +14,24 @@ import { isIST } from './utils/security';
 import { getServerHour } from './services/timeService';
 
 function App() {
-  const [user, setUser] = useState(null);
+  // Initialize User from storage
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('quiz_user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  // If user exists in storage, they should be in the QUIZ view
+  const [view, setView] = useState(() => {
+    return localStorage.getItem('quiz_user') ? 'QUIZ' : 'LANDING';
+  });
+
   const [lang, setLang] = useState('en'); 
-  const [view, setView] = useState('LANDING'); 
   const [finalScore, setFinalScore] = useState(0);
   const [adminPassword, setAdminPassword] = useState('');
-
   const [serverHour, setServerHour] = useState(null);
   const [isLoadingTime, setIsLoadingTime] = useState(true);
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
   
-  // Precise Time States
   const [dbStartTime, setDbStartTime] = useState(11);
   const [dbStartMin, setDbStartMin] = useState(0);
   const [dbEndTime, setDbEndTime] = useState(17);
@@ -33,8 +40,6 @@ function App() {
   const isTimezoneValid = isIST();
   const effectiveHour = serverHour !== null ? serverHour : new Date().getHours();
   const currentMinutes = new Date().getMinutes();
-
-  // Precise Comparison Logic
   const currentTotal = (effectiveHour * 60) + currentMinutes;
   const startTotal = (dbStartTime * 60) + dbStartMin;
   const endTotal = (dbEndTime * 60) + dbEndMin;
@@ -75,6 +80,7 @@ function App() {
 
   const handleStartLanding = (userData) => {
     setUser(userData);
+    localStorage.setItem('quiz_user', JSON.stringify(userData)); // Save user session
     setView('INSTRUCTIONS'); 
   };
 
@@ -83,6 +89,8 @@ function App() {
     setView('RESULT');
     const today = new Date().toISOString().split('T')[0];
     localStorage.setItem(`sprint_lock_${today}`, 'true');
+    localStorage.removeItem('quiz_user'); // Wipe session on finish
+    
     try {
       await supabase.from('quiz_results').insert([
         { name: user.name, school: user.school, score: score, total_time_ms: totalMs }
@@ -102,7 +110,6 @@ function App() {
       <header className="main-header">
         <h1 className="neon-text glow">{quizData.quizTitle}</h1>
       </header>
-
       <main className="content-area">
         {view === 'LANDING' && !isAdminView && (
           <>

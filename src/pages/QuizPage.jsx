@@ -1,25 +1,30 @@
-/**
- * QuizPage.jsx - High Precision & Robust
- */
 import React, { useState, useEffect, useRef } from 'react';
 
 const QuizPage = ({ questions, onComplete }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Initialize from storage to survive refresh
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    return Number(localStorage.getItem('quiz_current_index')) || 0;
+  });
+  const [score, setScore] = useState(() => {
+    return Number(localStorage.getItem('quiz_current_score')) || 0;
+  });
   const [timeLeft, setTimeLeft] = useState(15);
-  const [score, setScore] = useState(0);
   
-  // High-precision timing
   const startTimeRef = useRef(Date.now());
-  const totalTimeRef = useRef(0);
   const timerRef = useRef(null);
 
   const currentQuestion = questions[currentIndex];
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
-  // Cleanup function to stop timer safely
   const clearTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
   };
+
+  // Persist index and score whenever they change
+  useEffect(() => {
+    localStorage.setItem('quiz_current_index', currentIndex);
+    localStorage.setItem('quiz_current_score', score);
+  }, [currentIndex, score]);
 
   useEffect(() => {
     startTimeRef.current = Date.now();
@@ -29,7 +34,7 @@ const QuizPage = ({ questions, onComplete }) => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
           clearTimer();
-          handleNext(null); // Auto-advance
+          handleNext(null); 
           return 0;
         }
         return prev - 1;
@@ -40,11 +45,15 @@ const QuizPage = ({ questions, onComplete }) => {
   }, [currentIndex]);
 
   const handleNext = (selectedOption) => {
-    clearTimer(); // Stop timer immediately on click or timeout
+    clearTimer();
 
-    // Calculate precision time in ms
-    const timeTaken = Date.now() - startTimeRef.current;
-    totalTimeRef.current += timeTaken;
+    // Calculate time for THIS segment
+    const timeTakenThisSegment = Date.now() - startTimeRef.current;
+    
+    // Add to previously stored total time
+    const previousTotalTime = Number(localStorage.getItem('quiz_total_time_ms')) || 0;
+    const updatedTotalTime = previousTotalTime + timeTakenThisSegment;
+    localStorage.setItem('quiz_total_time_ms', updatedTotalTime);
 
     let newScore = score;
     if (selectedOption && selectedOption === currentQuestion.correctAnswer) {
@@ -52,42 +61,33 @@ const QuizPage = ({ questions, onComplete }) => {
       setScore(newScore);
     }
 
-    // Advance Logic with Safety Check
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      onComplete(newScore, totalTimeRef.current);
+      // Clear all quiz progress keys on finish
+      localStorage.removeItem('quiz_current_index');
+      localStorage.removeItem('quiz_current_score');
+      localStorage.removeItem('quiz_total_time_ms');
+      onComplete(newScore, updatedTotalTime);
     }
   };
 
-  // Safety: If for some reason currentQuestion is undefined, show a loading state
-  if (!currentQuestion) return <div className="glass-card">Loading next challenge...</div>;
+  if (!currentQuestion) return <div className="glass-card">Loading...</div>;
 
   return (
     <div className={`quiz-container ${timeLeft <= 5 ? 'emergency-mode' : ''}`}>
       <div className="progress-container">
         <div className="progress-bar" style={{ width: `${progress}%` }}></div>
       </div>
-
       <div className="glass-card fade-in">
         <div className="quiz-header">
           <span className="q-count">QUESTION {currentIndex + 1} / {questions.length}</span>
-          <div className={`timer-ring ${timeLeft <= 5 ? 'timer-warning' : ''}`}>
-            {timeLeft}s
-          </div>
+          <div className={`timer-ring ${timeLeft <= 5 ? 'timer-warning' : ''}`}>{timeLeft}s</div>
         </div>
-
         <h3 className="question-text">{currentQuestion.text}</h3>
-
         <div className="options-container">
           {currentQuestion.options.map((option, index) => (
-            <button 
-              key={index} 
-              className="option-btn"
-              onClick={() => handleNext(option)}
-            >
-              {option}
-            </button>
+            <button key={index} className="option-btn" onClick={() => handleNext(option)}>{option}</button>
           ))}
         </div>
       </div>
