@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "What does AI stand for?",
+      "text": "What does NLP stand for?",
       "options": [
-        "Applied Innovation",
-        "Artificial Intelligence",
-        "Advanced Internet",
-        "Automatic Information"
-      ],
-      "correctAnswer": "Artificial Intelligence",
-      "timer": 15
-    },
-    {
-      "id": 2,
-      "text": "Which of the following is an example of AI?",
-      "options": [
-        "Ceiling fan",
-        "Calculator",
-        "Voice assistant (Alexa, Siri)",
-        "Bulb"
-      ],
-      "correctAnswer": "Voice assistant (Alexa, Siri)",
-      "timer": 15
-    },
-    {
-      "id": 3,
-      "text": "Which company developed the AI chatbot called ChatGPT?",
-      "options": [
-        "Google",
-        "Microsoft",
-        "OpenAI",
-        "Meta"
-      ],
-      "correctAnswer": "OpenAI",
-      "timer": 15
-    },
-    {
-      "id": 4,
-      "text": "What is the primary goal of Machine Learning?",
-      "options": [
-        "To make computers run faster",
-        "To allow systems to learn from data",
-        "To create physical robots",
-        "To replace human eyes"
-      ],
-      "correctAnswer": "To allow systems to learn from data",
-      "timer": 15
-    },
-    {
-      "id": 5,
-      "text": "Which AI technology allows computers to 'see' and interpret images?",
-      "options": [
+        "Natural Logic Programming",
+        "Neural Language Processing",
         "Natural Language Processing",
-        "Computer Vision",
-        "Speech Recognition",
-        "Data Mining"
-      ],
-      "correctAnswer": "Computer Vision",
-      "timer": 15
-    },
-    {
-      "id": 6,
-      "text": "What does NLP stand for in the context of AI?",
-      "options": [
-        "New Logic Programming",
-        "Natural Language Processing",
-        "Network Link Protocol",
-        "Node Level Processing"
+        "Numeric Learning Process"
       ],
       "correctAnswer": "Natural Language Processing",
       "timer": 15
     },
     {
-      "id": 7,
-      "text": "Which of these is used to train AI models?",
+      "id": 2,
+      "text": "NLP helps computers to understand:",
       "options": [
-        "Large Datasets",
-        "A printer",
-        "A joystick",
-        "Empty folders"
+        "Only numbers",
+        "Human language",
+        "Only images",
+        "Only videos"
       ],
-      "correctAnswer": "Large Datasets",
+      "correctAnswer": "Human language",
+      "timer": 15
+    },
+    {
+      "id": 3,
+      "text": "Which of the following is an example of NLP in daily life?",
+      "options": [
+        "Calculator",
+        "Google Translate",
+        "Flashlight",
+        "Camera zoom"
+      ],
+      "correctAnswer": "Google Translate",
+      "timer": 15
+    },
+    {
+      "id": 4,
+      "text": "Chatbots use NLP to:",
+      "options": [
+        "Play music",
+        "Talk to humans",
+        "Repair computers",
+        "Charge batteries"
+      ],
+      "correctAnswer": "Talk to humans",
+      "timer": 15
+    },
+    {
+      "id": 5,
+      "text": "Which app uses NLP to convert speech into text?",
+      "options": [
+        "Voice typing",
+        "Paint",
+        "Calculator",
+        "Calendar"
+      ],
+      "correctAnswer": "Voice typing",
+      "timer": 15
+    },
+    {
+      "id": 6,
+      "text": "Sentiment Analysis in NLP is used to:",
+      "options": [
+        "Measure temperature",
+        "Detect emotions in text",
+        "Count numbers",
+        "Draw pictures"
+      ],
+      "correctAnswer": "Detect emotions in text",
+      "timer": 15
+    },
+    {
+      "id": 7,
+      "text": "Which of the following is a language that NLP systems can understand?",
+      "options": [
+        "English",
+        "Hindi",
+        "Spanish",
+        "All of the above"
+      ],
+      "correctAnswer": "All of the above",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "In AI, what is a 'Neural Network' inspired by?",
+      "text": "Spell check in MS Word is an example of:",
       "options": [
-        "A spider web",
-        "The human brain",
-        "Electrical circuits",
-        "Social media"
+        "Robotics",
+        "NLP",
+        "Gaming",
+        "Animation"
       ],
-      "correctAnswer": "The human brain",
+      "correctAnswer": "NLP",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "Self-driving cars primarily use which technology to navigate?",
+      "text": "Which device uses NLP to follow voice commands?",
       "options": [
-        "Bluetooth only",
-        "AI and Sensors",
-        "Radio waves",
-        "Remote controls"
+        "Smart speaker (like Alexa)",
+        "Table fan",
+        "Printer",
+        "Projector"
       ],
-      "correctAnswer": "AI and Sensors",
+      "correctAnswer": "Smart speaker (like Alexa)",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "Which AI is designed to simulate human conversation?",
+      "text": "NLP is a part of which bigger field?",
       "options": [
-        "Spreadsheet",
-        "Operating System",
-        "Chatbot",
-        "Antivirus"
+        "Artificial Intelligence",
+        "Geography",
+        "Chemistry",
+        "History"
       ],
-      "correctAnswer": "Chatbot",
+      "correctAnswer": "Artificial Intelligence",
       "timer": 15
     }
   ]
