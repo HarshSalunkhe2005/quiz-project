@@ -4,10 +4,15 @@ import * as XLSX from 'xlsx';
 
 const AdminDashboard = () => {
   const [results, setResults] = useState([]);
-  const [totalParticipants, setTotalParticipants] = useState(0); // For the REAL count
+  const [totalParticipants, setTotalParticipants] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isDoubleGuardEnabled, setIsDoubleGuardEnabled] = useState(false);
   const [isAntiRefreshEnabled, setIsAntiRefreshEnabled] = useState(false);
+  
+  // New Date Scheduling States
+  const [isDateEnabled, setIsDateEnabled] = useState(false);
+  const [sprintDate, setSprintDate] = useState('');
+
   const [startTime, setStartTime] = useState(11);
   const [startMin, setStartMin] = useState(0);
   const [endTime, setEndTime] = useState(17);
@@ -16,8 +21,6 @@ const AdminDashboard = () => {
 
   const fetchResults = async () => {
     setLoading(true);
-    
-    // 1. Fetch filtered leaderboard data
     const { data, error } = await supabase
       .from('quiz_results')
       .select('*')
@@ -27,13 +30,11 @@ const AdminDashboard = () => {
 
     if (!error) setResults(data);
 
-    // 2. Fetch REAL total count (all entries regardless of score)
     const { count, error: countError } = await supabase
       .from('quiz_results')
       .select('*', { count: 'exact', head: true });
 
     if (!countError) setTotalParticipants(count || 0);
-
     setLoading(false);
   };
 
@@ -46,6 +47,8 @@ const AdminDashboard = () => {
       const sm = data.find(s => s.key === 'start_min');
       const et = data.find(s => s.key === 'end_time');
       const em = data.find(s => s.key === 'end_min');
+      const de = data.find(s => s.key === 'date_scheduling_enabled');
+      const sd = data.find(s => s.key === 'sprint_date');
       
       if (dg) setIsDoubleGuardEnabled(dg.value === 'true');
       if (ar) setIsAntiRefreshEnabled(ar.value === 'true');
@@ -53,6 +56,8 @@ const AdminDashboard = () => {
       if (sm) setStartMin(Number(sm.value));
       if (et) setEndTime(Number(et.value));
       if (em) setEndMin(Number(em.value));
+      if (de) setIsDateEnabled(de.value === 'true');
+      if (sd) setSprintDate(sd.value);
     }
   };
 
@@ -94,7 +99,7 @@ const AdminDashboard = () => {
     <div className="admin-content fade-in">
       <div className="top-left-settings">
         <button onClick={() => setShowSettings(!showSettings)} className="security-toggle-btn">
-          ⚙️ SECURITY
+          ⚙️ SECURITY & SCHEDULING
         </button>
         {showSettings && (
           <div className="settings-dropdown glass-panel fade-in">
@@ -108,7 +113,24 @@ const AdminDashboard = () => {
               <input type="checkbox" checked={isAntiRefreshEnabled} 
                 onChange={(e) => updateSetting('anti_refresh_enabled', e.target.checked, setIsAntiRefreshEnabled)} />
             </div>
+            
             <hr style={{opacity: 0.2}} />
+            
+            {/* Date Scheduling Section */}
+            <div className="setting-item">
+              <span>Enable Date Scheduling</span>
+              <input type="checkbox" checked={isDateEnabled} 
+                onChange={(e) => updateSetting('date_scheduling_enabled', e.target.checked, setIsDateEnabled)} />
+            </div>
+
+            {isDateEnabled && (
+              <div className="setting-item fade-in">
+                <span>Sprint Date</span>
+                <input type="date" value={sprintDate} className="admin-date-input"
+                  onChange={(e) => updateSetting('sprint_date', e.target.value, setSprintDate)} />
+              </div>
+            )}
+
             <div className="setting-item">
               <span>Start (HH:MM)</span>
               <div style={{display: 'flex', gap: '4px'}}>

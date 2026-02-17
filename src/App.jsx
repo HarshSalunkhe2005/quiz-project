@@ -14,13 +14,11 @@ import { isIST } from './utils/security';
 import { getServerHour } from './services/timeService';
 
 function App() {
-  // Initialize User from storage
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem('quiz_user');
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // If user exists in storage, they should be in the QUIZ view
   const [view, setView] = useState(() => {
     return localStorage.getItem('quiz_user') ? 'QUIZ' : 'LANDING';
   });
@@ -32,21 +30,35 @@ function App() {
   const [isLoadingTime, setIsLoadingTime] = useState(true);
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
   
+  // Time and Date States
   const [dbStartTime, setDbStartTime] = useState(11);
   const [dbStartMin, setDbStartMin] = useState(0);
   const [dbEndTime, setDbEndTime] = useState(17);
   const [dbEndMin, setDbEndMin] = useState(0);
+  const [sprintDate, setSprintDate] = useState('');
+  const [isDateEnabled, setIsDateEnabled] = useState(false);
 
   const isTimezoneValid = isIST();
-  const effectiveHour = serverHour !== null ? serverHour : new Date().getHours();
-  const currentMinutes = new Date().getMinutes();
+  
+  // Date and Time Comparison Logic
+  const now = new Date();
+  const todayStr = now.toISOString().split('T')[0];
+  const effectiveHour = serverHour !== null ? serverHour : now.getHours();
+  const currentMinutes = now.getMinutes();
+
   const currentTotal = (effectiveHour * 60) + currentMinutes;
   const startTotal = (dbStartTime * 60) + dbStartMin;
   const endTotal = (dbEndTime * 60) + dbEndMin;
 
-  const isBeforeSprint = currentTotal < startTotal;
-  const isAfterSprint = currentTotal >= endTotal;
-  const isLive = !isBeforeSprint && !isAfterSprint;
+  // Final View Logic
+  const dateMatches = !isDateEnabled || todayStr === sprintDate;
+  const isBeforeDate = isDateEnabled && todayStr < sprintDate;
+  const isAfterDate = isDateEnabled && todayStr > sprintDate;
+
+  const isBeforeSprint = isBeforeDate || (dateMatches && currentTotal < startTotal);
+  const isAfterSprint = isAfterDate || (dateMatches && currentTotal >= endTotal);
+  const isLive = dateMatches && !isBeforeSprint && !isAfterSprint;
+  
   const isAdminView = view === 'ADMIN_AUTH' || view === 'ADMIN_DASHBOARD';
 
   useEffect(() => {
@@ -61,12 +73,16 @@ function App() {
         const sm = data.find(s => s.key === 'start_min');
         const et = data.find(s => s.key === 'end_time');
         const em = data.find(s => s.key === 'end_min');
+        const sd = data.find(s => s.key === 'sprint_date');
+        const de = data.find(s => s.key === 'date_scheduling_enabled');
 
         if (ar?.value === 'true' && hasLock) setAlreadyParticipated(true);
         if (st) setDbStartTime(Number(st.value));
         if (sm) setDbStartMin(Number(sm.value));
         if (et) setDbEndTime(Number(et.value));
         if (em) setDbEndMin(Number(em.value));
+        if (sd) setSprintDate(sd.value);
+        if (de) setIsDateEnabled(de.value === 'true');
       }
 
       const sHour = await getServerHour();
@@ -80,7 +96,7 @@ function App() {
 
   const handleStartLanding = (userData) => {
     setUser(userData);
-    localStorage.setItem('quiz_user', JSON.stringify(userData)); // Save user session
+    localStorage.setItem('quiz_user', JSON.stringify(userData));
     setView('INSTRUCTIONS'); 
   };
 
@@ -89,7 +105,7 @@ function App() {
     setView('RESULT');
     const today = new Date().toISOString().split('T')[0];
     localStorage.setItem(`sprint_lock_${today}`, 'true');
-    localStorage.removeItem('quiz_user'); // Wipe session on finish
+    localStorage.removeItem('quiz_user'); 
     
     try {
       await supabase.from('quiz_results').insert([
@@ -123,7 +139,14 @@ function App() {
                   </div>
                 ) : (
                   <>
-                    {isBeforeSprint && <PreSprintPage startTime={dbStartTime} startMin={dbStartMin} />}
+                    {isBeforeSprint && (
+                      <PreSprintPage 
+                        startTime={dbStartTime} 
+                        startMin={dbStartMin} 
+                        sprintDate={sprintDate}
+                        isDateEnabled={isDateEnabled}
+                      />
+                    )}
                     {isAfterSprint && <PostSprintPage />}
                     {isLive && <LandingPage onStart={handleStartLanding} />}
                   </>
