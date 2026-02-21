@@ -3,120 +3,120 @@
   "questions": [
     {
       "id": 1,
-      "text": "What does NLP stand for?",
+      "text": "Which of these is a popular AI tool used to generate human-like text and answers?",
       "options": [
-        "Natural Logic Programming",
-        "Neural Language Processing",
+        "Photoshop",
+        "ChatGPT",
+        "Google Maps",
+        "WhatsApp"
+      ],
+      "correctAnswer": "ChatGPT",
+      "timer": 15
+    },
+    {
+      "id": 2,
+      "text": "Machine Learning (ML) helps computers learn from _____ without specific programming.",
+      "options": [
+        "Magic",
+        "Data",
+        "Electricity",
+        "Batteries"
+      ],
+      "correctAnswer": "Data",
+      "timer": 15
+    },
+    {
+      "id": 3,
+      "text": "Which technology helps a self-driving car 'see' and recognize traffic lights?",
+      "options": [
+        "Deep Hearing",
+        "Computer Vision",
+        "Natural Typing",
+        "Smart Battery"
+      ],
+      "correctAnswer": "Computer Vision",
+      "timer": 15
+    },
+    {
+      "id": 4,
+      "text": "When you talk to Alexa or Siri, which AI technology understands your voice?",
+      "options": [
         "Natural Language Processing",
-        "Numeric Learning Process"
+        "Computer Painting",
+        "Robot Dancing",
+        "Hard Drive Cleaning"
       ],
       "correctAnswer": "Natural Language Processing",
       "timer": 15
     },
     {
-      "id": 2,
-      "text": "NLP helps computers to understand:",
-      "options": [
-        "Only numbers",
-        "Human language",
-        "Only images",
-        "Only videos"
-      ],
-      "correctAnswer": "Human language",
-      "timer": 15
-    },
-    {
-      "id": 3,
-      "text": "Which of the following is an example of NLP in daily life?",
-      "options": [
-        "Calculator",
-        "Google Translate",
-        "Flashlight",
-        "Camera zoom"
-      ],
-      "correctAnswer": "Google Translate",
-      "timer": 15
-    },
-    {
-      "id": 4,
-      "text": "Chatbots use NLP to:",
-      "options": [
-        "Play music",
-        "Talk to humans",
-        "Repair computers",
-        "Charge batteries"
-      ],
-      "correctAnswer": "Talk to humans",
-      "timer": 15
-    },
-    {
       "id": 5,
-      "text": "Which app uses NLP to convert speech into text?",
+      "text": "What do we call a machine that is designed to look and act like a human?",
       "options": [
-        "Voice typing",
-        "Paint",
+        "Android/Humanoid",
+        "Desktop",
         "Calculator",
-        "Calendar"
+        "Printer"
       ],
-      "correctAnswer": "Voice typing",
+      "correctAnswer": "Android/Humanoid",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "Sentiment Analysis in NLP is used to:",
+      "text": "What is the name of the test used to see if a machine can think like a human?",
       "options": [
-        "Measure temperature",
-        "Detect emotions in text",
-        "Count numbers",
-        "Draw pictures"
+        "The Speed Test",
+        "The IQ Test",
+        "The Turing Test",
+        "The Coding Test"
       ],
-      "correctAnswer": "Detect emotions in text",
+      "correctAnswer": "The Turing Test",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "Which of the following is a language that NLP systems can understand?",
+      "text": "Which of these is an example of an AI 'Recommendation System'?",
       "options": [
-        "English",
-        "Hindi",
-        "Spanish",
-        "All of the above"
+        "A clock showing time",
+        "YouTube suggesting a video",
+        "A light switch",
+        "A doorbell ringing"
       ],
-      "correctAnswer": "All of the above",
+      "correctAnswer": "YouTube suggesting a video",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "Spell check in MS Word is an example of:",
+      "text": "'Face ID' on a smartphone uses which technology to unlock the screen?",
       "options": [
-        "Robotics",
         "NLP",
-        "Gaming",
-        "Animation"
+        "Deep Learning Audio",
+        "Computer Vision",
+        "Keyboard Logic"
       ],
-      "correctAnswer": "NLP",
+      "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "Which device uses NLP to follow voice commands?",
+      "text": "If a computer improves its game strategy every time it plays, it is using:",
       "options": [
-        "Smart speaker (like Alexa)",
-        "Table fan",
-        "Printer",
-        "Projector"
+        "Machine Learning",
+        "Better Graphics",
+        "Faster Internet",
+        "More Speakers"
       ],
-      "correctAnswer": "Smart speaker (like Alexa)",
+      "correctAnswer": "Machine Learning",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "NLP is a part of which bigger field?",
+      "text": "Chatbots like ChatGPT are part of which bigger technology field?",
       "options": [
         "Artificial Intelligence",
-        "Geography",
-        "Chemistry",
-        "History"
+        "Hardware Engineering",
+        "History",
+        "Battery Management"
       ],
       "correctAnswer": "Artificial Intelligence",
       "timer": 15
