@@ -17,7 +17,7 @@ const PreSprintPage = ({ startTime, startMin, sprintDate, isDateEnabled }) => {
       
       <p>
         The competition window opens on
-        {isDateEnabled && <b> SUNDAY {formatDate(sprintDate)}</b>} at
+        {isDateEnabled && <b> {formatDate(sprintDate)}</b>} at
         <b> {startTime}:{formattedMin} AM IST</b>.
       </p>
 
