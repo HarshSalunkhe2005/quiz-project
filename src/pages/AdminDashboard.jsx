@@ -9,7 +9,6 @@ const AdminDashboard = () => {
   const [isDoubleGuardEnabled, setIsDoubleGuardEnabled] = useState(false);
   const [isAntiRefreshEnabled, setIsAntiRefreshEnabled] = useState(false);
   
-  // New Date Scheduling States
   const [isDateEnabled, setIsDateEnabled] = useState(false);
   const [sprintDate, setSprintDate] = useState('');
 
@@ -76,6 +75,7 @@ const AdminDashboard = () => {
     const excelData = results.map((res, index) => ({
       Rank: index + 1,
       Name: res.name,
+      Class: res.class, // Added to Excel export
       School: res.school,
       Score: res.score,
       "Time (s)": (res.total_time_ms / 1000).toFixed(2)
@@ -116,7 +116,6 @@ const AdminDashboard = () => {
             
             <hr style={{opacity: 0.2}} />
             
-            {/* Date Scheduling Section */}
             <div className="setting-item">
               <span>Enable Date Scheduling</span>
               <input type="checkbox" checked={isDateEnabled} 
@@ -178,7 +177,14 @@ const AdminDashboard = () => {
       <div className="table-scroll-container">
         <table className="admin-table">
           <thead>
-            <tr><th>Rank</th><th>Name</th><th>School</th><th>Score</th><th>Time (s)</th></tr>
+            <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Class</th> {/* New Header */}
+              <th>School</th>
+              <th>Score</th>
+              <th>Time (s)</th>
+            </tr>
           </thead>
           <tbody>
             {results.length > 0 ? (
@@ -186,13 +192,14 @@ const AdminDashboard = () => {
                 <tr key={res.id} className={index < 3 ? `top-rank rank-${index + 1}` : ''}>
                   <td>{index + 1}</td>
                   <td>{res.name}</td>
+                  <td>{res.class}</td> {/* New Data Column */}
                   <td>{res.school}</td>
                   <td>{res.score}</td>
                   <td>{(res.total_time_ms / 1000).toFixed(2)}s</td>
                 </tr>
               ))
             ) : (
-              <tr><td colSpan="5">No qualifiers found.</td></tr>
+              <tr><td colSpan="6">No qualifiers found.</td></tr>
             )}
           </tbody>
         </table>

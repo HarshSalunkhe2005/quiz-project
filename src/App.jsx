@@ -30,7 +30,6 @@ function App() {
   const [isLoadingTime, setIsLoadingTime] = useState(true);
   const [alreadyParticipated, setAlreadyParticipated] = useState(false);
   
-  // Time and Date States
   const [dbStartTime, setDbStartTime] = useState(11);
   const [dbStartMin, setDbStartMin] = useState(0);
   const [dbEndTime, setDbEndTime] = useState(17);
@@ -40,7 +39,6 @@ function App() {
 
   const isTimezoneValid = isIST();
   
-  // Date and Time Comparison Logic
   const now = new Date();
   const todayStr = now.toISOString().split('T')[0];
   const effectiveHour = serverHour !== null ? serverHour : now.getHours();
@@ -50,7 +48,6 @@ function App() {
   const startTotal = (dbStartTime * 60) + dbStartMin;
   const endTotal = (dbEndTime * 60) + dbEndMin;
 
-  // Final View Logic
   const dateMatches = !isDateEnabled || todayStr === sprintDate;
   const isBeforeDate = isDateEnabled && todayStr < sprintDate;
   const isAfterDate = isDateEnabled && todayStr > sprintDate;
@@ -100,6 +97,7 @@ function App() {
     setView('INSTRUCTIONS'); 
   };
 
+  // Updated handleFinish to include the 'class' field
   const handleFinish = async (score, totalMs) => {
     setFinalScore(score);
     setView('RESULT');
@@ -109,9 +107,17 @@ function App() {
     
     try {
       await supabase.from('quiz_results').insert([
-        { name: user.name, school: user.school, score: score, total_time_ms: totalMs }
+        { 
+          name: user.name, 
+          class: user.class, // Added class here
+          school: user.school, 
+          score: score, 
+          total_time_ms: totalMs 
+        }
       ]);
-    } catch (err) { console.error("Database Error:", err.message); }
+    } catch (err) { 
+      console.error("Database Error:", err.message); 
+    }
   };
 
   const handleAdminLogin = () => {
