@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "In programming, what do we call a set of step-by-step instructions used to solve a problem?",
+      "text": "What is the main purpose of an algorithm in programming?",
       "options": [
-        "A Variable",
-        "An Algorithm",
-        "A Processor",
-        "A Digital Loop"
+        "To store pictures",
+        "To provide step-by-step instructions to solve a problem",
+        "To increase internet speed",
+        "To play music"
       ],
-      "correctAnswer": "An Algorithm",
+      "correctAnswer": "To provide step-by-step instructions to solve a problem",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "Machine Learning is different from traditional programming because the computer learns from:",
+      "text": "In Machine Learning, a computer improves its performance by learning from:",
       "options": [
-        "Strict rules",
-        "Patterns in data",
-        "Manual typing",
-        "Higher voltage"
+        "Data and patterns",
+        "Keyboard typing",
+        "Monitor resolution",
+        "Printer settings"
       ],
-      "correctAnswer": "Patterns in data",
+      "correctAnswer": "Data and patterns",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Deep Learning is a special type of AI inspired by which part of the human body?",
+      "text": "Which AI technology allows computers to understand images and videos?",
       "options": [
-        "The Nervous System",
-        "The Digestive System",
-        "The Respiratory System",
-        "The Skeletal System"
+        "Natural Language Processing",
+        "Computer Vision",
+        "Robotics Control",
+        "Network Programming"
       ],
-      "correctAnswer": "The Nervous System",
+      "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which technology allows a computer to recognize a cat in a photo versus a dog?",
+      "text": "A phone unlocks automatically when it recognizes the owner's face. This AI application belongs to which category?",
       "options": [
         "Natural Language Processing",
-        "Object Recognition (Computer Vision)",
-        "Audio Frequency Analysis",
-        "Data Encryption"
+        "Computer Vision",
+        "Robotics",
+        "Data Analysis"
       ],
-      "correctAnswer": "Object Recognition (Computer Vision)",
+      "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "What is the primary goal of Natural Language Processing (NLP)?",
+      "text": "Which of the following is an example of NLP (Natural Language Processing)?",
       "options": [
-        "To make computers run faster",
-        "To help machines understand human speech and text",
-        "To improve the resolution of digital photos",
-        "To create new programming languages"
+        "Google Translate",
+        "Calculator",
+        "Torch light",
+        "Stopwatch"
       ],
-      "correctAnswer": "To help machines understand human speech and text",
+      "correctAnswer": "Google Translate",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "ChatGPT is a type of AI known as a 'Large Language Model.' Which field does it belong to?",
+      "text": "Which of the following is a popular programming language?",
       "options": [
-        "Computer Vision",
-        "Robotic Hardware",
-        "Natural Language Processing",
-        "Graphic Designing"
+        "Python",
+        "Table",
+        "Pencil",
+        "Notebook"
       ],
-      "correctAnswer": "Natural Language Processing",
+      "correctAnswer": "Python",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "In coding, if you want a machine to repeat an action 10 times, you would use a:",
+      "text": "Which programming language is widely used in Artificial Intelligence?",
       "options": [
-        "String",
-        "Variable",
-        "Loop",
-        "Bracket"
+        "Python",
+        "HTML",
+        "CSS",
+        "Photoshop"
       ],
-      "correctAnswer": "Loop",
+      "correctAnswer": "Python",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "When an AI incorrectly identifies an image or gives a wrong answer, this is often called:",
+      "text": "What does a computer use to store and process data?",
       "options": [
-        "A System Crash",
-        "A Power Surge",
-        "An AI Hallucination or Error",
-        "A Hardware Shortcut"
+        "CPU",
+        "Pencil",
+        "Paper",
+        "Eraser"
       ],
-      "correctAnswer": "An AI Hallucination or Error",
+      "correctAnswer": "CPU",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "Which of these is the most basic 'language' that computers understand at the hardware level?",
+      "text": "Which of the following is natural language?",
       "options": [
-        "English",
-        "Python",
-        "Binary (0s and 1s)",
-        "HTML"
+        "Python language",
+        "English language",
+        "Binary code (0 and 1)",
+        "Java language"
       ],
-      "correctAnswer": "Binary (0s and 1s)",
+      "correctAnswer": "English language",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "A self-driving car uses 'Sensor Fusion' to combine data from cameras and sensors. This is an application of:",
+      "text": "A self-driving car uses AI to:",
       "options": [
-        "Social Media",
-        "Computer Vision and AI",
-        "Word Processing",
-        "Database Management"
+        "Predict traffic and recognize objects on the road",
+        "Play music",
+        "Charge the battery",
+        "Print documents"
       ],
-      "correctAnswer": "Computer Vision and AI",
+      "correctAnswer": "Predict traffic and recognize objects on the road",
       "timer": 15
     }
   ]
