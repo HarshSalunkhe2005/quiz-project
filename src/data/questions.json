@@ -1,124 +1,124 @@
 {
-  "quizTitle": "Sunday sprint Air G quiz competition",
+  "quizTitle": "SUNDAY SPRINT AIR G QUIZ",
   "questions": [
     {
       "id": 1,
-      "text": "What is the main purpose of an algorithm in programming?",
+      "text": "What is Artificial Intelligence mainly used for?",
       "options": [
-        "To store pictures",
-        "To provide step-by-step instructions to solve a problem",
-        "To increase internet speed",
-        "To play music"
+        "Making machines intelligent",
+        "Increasing electricity",
+        "Printing books",
+        "Control Electronic Devices"
       ],
-      "correctAnswer": "To provide step-by-step instructions to solve a problem",
+      "correctAnswer": "Making machines intelligent",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "In Machine Learning, a computer improves its performance by learning from:",
+      "text": "Which of the following is an example of AI in everyday life?",
       "options": [
-        "Data and patterns",
-        "Keyboard typing",
-        "Monitor resolution",
-        "Printer settings"
+        "Email spam filter",
+        "Wooden chair",
+        "School bag",
+        "Pencil"
       ],
-      "correctAnswer": "Data and patterns",
+      "correctAnswer": "Email spam filter",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which AI technology allows computers to understand images and videos?",
+      "text": "Which technology helps computers understand written text?",
       "options": [
         "Natural Language Processing",
-        "Computer Vision",
-        "Robotics Control",
-        "Network Programming"
+        "Robotics",
+        "Networking",
+        "Coding"
       ],
-      "correctAnswer": "Computer Vision",
+      "correctAnswer": "Natural Language Processing",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "A phone unlocks automatically when it recognizes the owner's face. This AI application belongs to which category?",
+      "text": "Which device can control home lights using the internet?",
       "options": [
-        "Natural Language Processing",
+        "Smart home controller",
+        "Notebook",
+        "TV Remote",
+        "Mobile Phone"
+      ],
+      "correctAnswer": "Smart home controller",
+      "timer": 15
+    },
+    {
+      "id": 5,
+      "text": "What is the main function of a sensor in robotics?",
+      "options": [
+        "Detect information from surroundings",
+        "Store books",
+        "Play music",
+        "Charge batteries"
+      ],
+      "correctAnswer": "Detect information from surroundings",
+      "timer": 15
+    },
+    {
+      "id": 6,
+      "text": "Which of the following is a smart device?",
+      "options": [
+        "Smart TV",
+        "Wooden desk",
+        "Paper notebook",
+        "Chalkboard"
+      ],
+      "correctAnswer": "Smart TV",
+      "timer": 15
+    },
+    {
+      "id": 7,
+      "text": "Which AI system can answer questions like a human in a chat?",
+      "options": [
+        "Chatbot",
+        "Calculator",
+        "Printer",
+        "Keyboard"
+      ],
+      "correctAnswer": "Chatbot",
+      "timer": 15
+    },
+    {
+      "id": 8,
+      "text": "Which technology allows a phone to recognize your face?",
+      "options": [
         "Computer Vision",
-        "Robotics",
-        "Data Analysis"
+        "Networking",
+        "Sensor",
+        "Camera"
       ],
       "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
-      "id": 5,
-      "text": "Which of the following is an example of NLP (Natural Language Processing)?",
-      "options": [
-        "Google Translate",
-        "Calculator",
-        "Torch light",
-        "Stopwatch"
-      ],
-      "correctAnswer": "Google Translate",
-      "timer": 15
-    },
-    {
-      "id": 6,
-      "text": "Which of the following is a popular programming language?",
-      "options": [
-        "Python",
-        "Table",
-        "Pencil",
-        "Notebook"
-      ],
-      "correctAnswer": "Python",
-      "timer": 15
-    },
-    {
-      "id": 7,
-      "text": "Which programming language is widely used in Artificial Intelligence?",
-      "options": [
-        "Python",
-        "HTML",
-        "CSS",
-        "Photoshop"
-      ],
-      "correctAnswer": "Python",
-      "timer": 15
-    },
-    {
-      "id": 8,
-      "text": "What does a computer use to store and process data?",
-      "options": [
-        "CPU",
-        "Pencil",
-        "Paper",
-        "Eraser"
-      ],
-      "correctAnswer": "CPU",
-      "timer": 15
-    },
-    {
       "id": 9,
-      "text": "Which of the following is natural language?",
+      "text": "In programming, instructions given to a computer are called:",
       "options": [
-        "Python language",
-        "English language",
-        "Binary code (0 and 1)",
-        "Java language"
+        "Code",
+        "Drawing",
+        "Music",
+        "Algorithm"
       ],
-      "correctAnswer": "English language",
+      "correctAnswer": "Code",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "A self-driving car uses AI to:",
+      "text": "Why are robots used in factories?",
       "options": [
-        "Predict traffic and recognize objects on the road",
-        "Play music",
-        "Charge the battery",
-        "Print documents"
+        "To perform tasks quickly and accurately",
+        "To sleep",
+        "To save people",
+        "To draw picture"
       ],
-      "correctAnswer": "Predict traffic and recognize objects on the road",
+      "correctAnswer": "To perform tasks quickly and accurately",
       "timer": 15
     }
   ]
