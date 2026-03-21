@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "What is Artificial Intelligence mainly used for?",
+      "text": "What is the main goal of Artificial Intelligence?",
       "options": [
-        "Making machines intelligent",
-        "Increasing electricity",
-        "Printing books",
-        "Control Electronic Devices"
+        "To make machines think and act smart",
+        "To increase battery life",
+        "To draw pictures",
+        "To print documents"
       ],
-      "correctAnswer": "Making machines intelligent",
+      "correctAnswer": "To make machines think and act smart",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "Which of the following is an example of AI in everyday life?",
+      "text": "Which of the following is an example of AI in mobile phones?",
       "options": [
-        "Email spam filter",
-        "Wooden chair",
-        "School bag",
-        "Pencil"
+        "Auto-correct while typing",
+        "Phone cover",
+        "Charging cable",
+        "Screen guard"
       ],
-      "correctAnswer": "Email spam filter",
+      "correctAnswer": "Auto-correct while typing",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which technology helps computers understand written text?",
+      "text": "Which technology helps computers understand voice commands?",
       "options": [
         "Natural Language Processing",
+        "Computer Vision",
         "Robotics",
-        "Networking",
-        "Coding"
+        "Hardware"
       ],
       "correctAnswer": "Natural Language Processing",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which device can control home lights using the internet?",
+      "text": "Which of these is an example of Computer Vision?",
       "options": [
-        "Smart home controller",
-        "Notebook",
-        "TV Remote",
-        "Mobile Phone"
+        "Detecting objects in a photo",
+        "Writing an essay",
+        "Playing music",
+        "Sending messages"
       ],
-      "correctAnswer": "Smart home controller",
+      "correctAnswer": "Detecting objects in a photo",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "What is the main function of a sensor in robotics?",
+      "text": "What is a robot mainly designed to do?",
       "options": [
-        "Detect information from surroundings",
-        "Store books",
-        "Play music",
-        "Charge batteries"
+        "Perform tasks automatically",
+        "Sleep",
+        "Eat food",
+        "Study books"
       ],
-      "correctAnswer": "Detect information from surroundings",
+      "correctAnswer": "Perform tasks automatically",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "Which of the following is a smart device?",
+      "text": "Which of the following is an IoT application?",
       "options": [
-        "Smart TV",
-        "Wooden desk",
-        "Paper notebook",
-        "Chalkboard"
+        "Smart door lock",
+        "Wooden table",
+        "Paper file",
+        "Chalk"
       ],
-      "correctAnswer": "Smart TV",
+      "correctAnswer": "Smart door lock",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "Which AI system can answer questions like a human in a chat?",
+      "text": "Which component helps a robot to “see” its surroundings?",
       "options": [
-        "Chatbot",
-        "Calculator",
-        "Printer",
-        "Keyboard"
+        "Sensor",
+        "Motor",
+        "Battery",
+        "Wire"
       ],
-      "correctAnswer": "Chatbot",
+      "correctAnswer": "Sensor",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "Which technology allows a phone to recognize your face?",
+      "text": "What is a program in a computer?",
       "options": [
-        "Computer Vision",
-        "Networking",
-        "Sensor",
-        "Camera"
+        "A set of instructions",
+        "A drawing",
+        "A game only",
+        "A device"
       ],
-      "correctAnswer": "Computer Vision",
+      "correctAnswer": "A set of instructions",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "In programming, instructions given to a computer are called:",
+      "text": "Which AI system suggests songs or videos based on your interest?",
       "options": [
-        "Code",
-        "Drawing",
-        "Music",
-        "Algorithm"
+        "Recommendation system",
+        "Calculator",
+        "Scanner",
+        "Keyboard"
       ],
-      "correctAnswer": "Code",
+      "correctAnswer": "Recommendation system",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "Why are robots used in factories?",
+      "text": "Why is Machine Learning useful?",
       "options": [
-        "To perform tasks quickly and accurately",
-        "To sleep",
-        "To save people",
-        "To draw picture"
+        "It helps computers learn from data",
+        "It increases screen size",
+        "It reduces electricity",
+        "It changes hardware"
       ],
-      "correctAnswer": "To perform tasks quickly and accurately",
+      "correctAnswer": "It helps computers learn from data",
       "timer": 15
     }
   ]
