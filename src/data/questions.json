@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "What is the main goal of Artificial Intelligence?",
+      "text": "Which of the following best describes Artificial Intelligence?",
       "options": [
-        "To make machines think and act smart",
-        "To increase battery life",
-        "To draw pictures",
-        "To print documents"
+        "Machines following fixed instructions only",
+        "Machines that can learn and make decisions",
+        "Devices that store data",
+        "Tools for drawing"
       ],
-      "correctAnswer": "To make machines think and act smart",
+      "correctAnswer": "Machines that can learn and make decisions",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "Which of the following is an example of AI in mobile phones?",
+      "text": "A spam filter improves over time by learning from emails. This is an example of:",
       "options": [
-        "Auto-correct while typing",
-        "Phone cover",
-        "Charging cable",
-        "Screen guard"
+        "Networking",
+        "Machine Learning",
+        "Hardware",
+        "Storage"
       ],
-      "correctAnswer": "Auto-correct while typing",
+      "correctAnswer": "Machine Learning",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which technology helps computers understand voice commands?",
+      "text": "Which situation best represents Machine Learning?",
       "options": [
-        "Natural Language Processing",
-        "Computer Vision",
-        "Robotics",
-        "Hardware"
+        "A program that always gives the same output",
+        "A system that improves accuracy using past data",
+        "A calculator solving fixed equations",
+        "A printer printing documents"
       ],
-      "correctAnswer": "Natural Language Processing",
+      "correctAnswer": "A system that improves accuracy using past data",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which of these is an example of Computer Vision?",
+      "text": "Which task mainly uses Natural Language Processing?",
       "options": [
-        "Detecting objects in a photo",
-        "Writing an essay",
-        "Playing music",
-        "Sending messages"
+        "Translating one language to another",
+        "Detecting objects in images",
+        "Charging a device",
+        "Storing files"
       ],
-      "correctAnswer": "Detecting objects in a photo",
+      "correctAnswer": "Translating one language to another",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "What is a robot mainly designed to do?",
+      "text": "A phone unlocking using face recognition uses:",
       "options": [
-        "Perform tasks automatically",
-        "Sleep",
-        "Eat food",
-        "Study books"
+        "NLP",
+        "Computer Vision",
+        "IoT",
+        "Networking"
       ],
-      "correctAnswer": "Perform tasks automatically",
+      "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "Which of the following is an IoT application?",
+      "text": "In robotics, which combination is essential for a robot to work properly?",
       "options": [
-        "Smart door lock",
-        "Wooden table",
-        "Paper file",
-        "Chalk"
+        "Sensor + Controller + Actuator",
+        "Screen + Keyboard",
+        "Paper + Pen",
+        "Battery only"
       ],
-      "correctAnswer": "Smart door lock",
+      "correctAnswer": "Sensor + Controller + Actuator",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "Which component helps a robot to “see” its surroundings?",
+      "text": "A smart irrigation system that waters plants automatically based on soil moisture is an example of:",
       "options": [
-        "Sensor",
-        "Motor",
-        "Battery",
-        "Wire"
+        "Gaming system",
+        "IoT application",
+        "Manual system",
+        "Drawing tool"
       ],
-      "correctAnswer": "Sensor",
+      "correctAnswer": "IoT application",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "What is a program in a computer?",
+      "text": "Why are sensors important in AI-based systems?",
       "options": [
-        "A set of instructions",
-        "A drawing",
-        "A game only",
-        "A device"
+        "They help collect real-world data",
+        "They only store images",
+        "They increase screen size",
+        "They replace software"
       ],
-      "correctAnswer": "A set of instructions",
+      "correctAnswer": "They help collect real-world data",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "Which AI system suggests songs or videos based on your interest?",
+      "text": "If you want a sprite to move continuously, which block is most suitable?",
       "options": [
-        "Recommendation system",
-        "Calculator",
-        "Scanner",
-        "Keyboard"
+        "Repeat block",
+        "Forever block",
+        "Stop block",
+        "Say block"
       ],
-      "correctAnswer": "Recommendation system",
+      "correctAnswer": "Forever block",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "Why is Machine Learning useful?",
+      "text": "What will happen if you place a “repeat 5” block around a move command?",
       "options": [
-        "It helps computers learn from data",
-        "It increases screen size",
-        "It reduces electricity",
-        "It changes hardware"
+        "The sprite moves once",
+        "The sprite moves 5 times",
+        "The sprite stops",
+        "The sprite disappears"
       ],
-      "correctAnswer": "It helps computers learn from data",
+      "correctAnswer": "The sprite moves 5 times",
       "timer": 15
     }
   ]
