@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "What is Artificial Intelligence mainly used for?",
+      "text": "Which of the following best describes Artificial Intelligence?",
       "options": [
-        "Making machines intelligent",
-        "Increasing electricity",
-        "Printing books",
-        "Control Electronic Devices"
+        "Machines following fixed instructions only",
+        "Machines that can learn and make decisions",
+        "Devices that store data",
+        "Tools for drawing"
       ],
-      "correctAnswer": "Making machines intelligent",
+      "correctAnswer": "Machines that can learn and make decisions",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "Which of the following is an example of AI in everyday life?",
+      "text": "A spam filter improves over time by learning from emails. This is an example of:",
       "options": [
-        "Email spam filter",
-        "Wooden chair",
-        "School bag",
-        "Pencil"
+        "Networking",
+        "Machine Learning",
+        "Hardware",
+        "Storage"
       ],
-      "correctAnswer": "Email spam filter",
+      "correctAnswer": "Machine Learning",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which technology helps computers understand written text?",
+      "text": "Which situation best represents Machine Learning?",
       "options": [
-        "Natural Language Processing",
-        "Robotics",
-        "Networking",
-        "Coding"
+        "A program that always gives the same output",
+        "A system that improves accuracy using past data",
+        "A calculator solving fixed equations",
+        "A printer printing documents"
       ],
-      "correctAnswer": "Natural Language Processing",
+      "correctAnswer": "A system that improves accuracy using past data",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which device can control home lights using the internet?",
+      "text": "Which task mainly uses Natural Language Processing?",
       "options": [
-        "Smart home controller",
-        "Notebook",
-        "TV Remote",
-        "Mobile Phone"
+        "Translating one language to another",
+        "Detecting objects in images",
+        "Charging a device",
+        "Storing files"
       ],
-      "correctAnswer": "Smart home controller",
+      "correctAnswer": "Translating one language to another",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "What is the main function of a sensor in robotics?",
+      "text": "A phone unlocking using face recognition uses:",
       "options": [
-        "Detect information from surroundings",
-        "Store books",
-        "Play music",
-        "Charge batteries"
-      ],
-      "correctAnswer": "Detect information from surroundings",
-      "timer": 15
-    },
-    {
-      "id": 6,
-      "text": "Which of the following is a smart device?",
-      "options": [
-        "Smart TV",
-        "Wooden desk",
-        "Paper notebook",
-        "Chalkboard"
-      ],
-      "correctAnswer": "Smart TV",
-      "timer": 15
-    },
-    {
-      "id": 7,
-      "text": "Which AI system can answer questions like a human in a chat?",
-      "options": [
-        "Chatbot",
-        "Calculator",
-        "Printer",
-        "Keyboard"
-      ],
-      "correctAnswer": "Chatbot",
-      "timer": 15
-    },
-    {
-      "id": 8,
-      "text": "Which technology allows a phone to recognize your face?",
-      "options": [
+        "NLP",
         "Computer Vision",
-        "Networking",
-        "Sensor",
-        "Camera"
+        "IoT",
+        "Networking"
       ],
       "correctAnswer": "Computer Vision",
       "timer": 15
     },
     {
-      "id": 9,
-      "text": "In programming, instructions given to a computer are called:",
+      "id": 6,
+      "text": "In robotics, which combination is essential for a robot to work properly?",
       "options": [
-        "Code",
-        "Drawing",
-        "Music",
-        "Algorithm"
+        "Sensor + Controller + Actuator",
+        "Screen + Keyboard",
+        "Paper + Pen",
+        "Battery only"
       ],
-      "correctAnswer": "Code",
+      "correctAnswer": "Sensor + Controller + Actuator",
+      "timer": 15
+    },
+    {
+      "id": 7,
+      "text": "A smart irrigation system that waters plants automatically based on soil moisture is an example of:",
+      "options": [
+        "Gaming system",
+        "IoT application",
+        "Manual system",
+        "Drawing tool"
+      ],
+      "correctAnswer": "IoT application",
+      "timer": 15
+    },
+    {
+      "id": 8,
+      "text": "Why are sensors important in AI-based systems?",
+      "options": [
+        "They help collect real-world data",
+        "They only store images",
+        "They increase screen size",
+        "They replace software"
+      ],
+      "correctAnswer": "They help collect real-world data",
+      "timer": 15
+    },
+    {
+      "id": 9,
+      "text": "If you want a sprite to move continuously, which block is most suitable?",
+      "options": [
+        "Repeat block",
+        "Forever block",
+        "Stop block",
+        "Say block"
+      ],
+      "correctAnswer": "Forever block",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "Why are robots used in factories?",
+      "text": "What will happen if you place a “repeat 5” block around a move command?",
       "options": [
-        "To perform tasks quickly and accurately",
-        "To sleep",
-        "To save people",
-        "To draw picture"
+        "The sprite moves once",
+        "The sprite moves 5 times",
+        "The sprite stops",
+        "The sprite disappears"
       ],
-      "correctAnswer": "To perform tasks quickly and accurately",
+      "correctAnswer": "The sprite moves 5 times",
       "timer": 15
     }
   ]
