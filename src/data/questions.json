@@ -3,122 +3,122 @@
   "questions": [
     {
       "id": 1,
-      "text": "Which of the following best describes Artificial Intelligence?",
+      "text": "What is Artificial Intelligence (AI)?",
       "options": [
-        "Machines following fixed instructions only",
-        "Machines that can learn and make decisions",
-        "Devices that store data",
-        "Tools for drawing"
+        "Human thinking",
+        "Machine that can think and learn",
+        "Only robots",
+        "Internet"
       ],
-      "correctAnswer": "Machines that can learn and make decisions",
+      "correctAnswer": "Machine that can think and learn",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "A spam filter improves over time by learning from emails. This is an example of:",
+      "text": "Which of the following is an example of AI?",
       "options": [
-        "Networking",
-        "Machine Learning",
-        "Hardware",
-        "Storage"
+        "Calculator",
+        "Google Assistant",
+        "Notebook",
+        "Pen"
       ],
-      "correctAnswer": "Machine Learning",
+      "correctAnswer": "Google Assistant",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which situation best represents Machine Learning?",
+      "text": "What is Machine Learning (ML)?",
       "options": [
-        "A program that always gives the same output",
-        "A system that improves accuracy using past data",
-        "A calculator solving fixed equations",
-        "A printer printing documents"
+        "Machines learning without data",
+        "Machines learning from data",
+        "Only coding",
+        "Only robots"
       ],
-      "correctAnswer": "A system that improves accuracy using past data",
+      "correctAnswer": "Machines learning from data",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which task mainly uses Natural Language Processing?",
+      "text": "Which is an example of Machine Learning?",
       "options": [
-        "Translating one language to another",
-        "Detecting objects in images",
-        "Charging a device",
-        "Storing files"
+        "Spam email detection",
+        "Writing in notebook",
+        "Typing on keyboard",
+        "Drawing"
       ],
-      "correctAnswer": "Translating one language to another",
+      "correctAnswer": "Spam email detection",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "A phone unlocking using face recognition uses:",
+      "text": "What is Natural Language Processing (NLP)?",
       "options": [
-        "NLP",
-        "Computer Vision",
-        "IoT",
-        "Networking"
+        "Understanding human language",
+        "Drawing images",
+        "Playing games",
+        "Typing code"
       ],
-      "correctAnswer": "Computer Vision",
+      "correctAnswer": "Understanding human language",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "In robotics, which combination is essential for a robot to work properly?",
+      "text": "Which is an example of NLP?",
       "options": [
-        "Sensor + Controller + Actuator",
-        "Screen + Keyboard",
-        "Paper + Pen",
-        "Battery only"
+        "Face recognition",
+        "Chatbot",
+        "Camera",
+        "Printer"
       ],
-      "correctAnswer": "Sensor + Controller + Actuator",
+      "correctAnswer": "Chatbot",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "A smart irrigation system that waters plants automatically based on soil moisture is an example of:",
+      "text": "What is Computer Vision (CV)?",
       "options": [
-        "Gaming system",
-        "IoT application",
-        "Manual system",
-        "Drawing tool"
+        "Understanding images and videos",
+        "Writing code",
+        "Listening to music",
+        "Typing"
       ],
-      "correctAnswer": "IoT application",
+      "correctAnswer": "Understanding images and videos",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "Why are sensors important in AI-based systems?",
+      "text": "Which is an example of Computer Vision?",
       "options": [
-        "They help collect real-world data",
-        "They only store images",
-        "They increase screen size",
-        "They replace software"
+        "Speech recognition",
+        "Face detection",
+        "Writing email",
+        "Chatting"
       ],
-      "correctAnswer": "They help collect real-world data",
+      "correctAnswer": "Face detection",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "If you want a sprite to move continuously, which block is most suitable?",
+      "text": "What is an Algorithm?",
       "options": [
-        "Repeat block",
-        "Forever block",
-        "Stop block",
-        "Say block"
+        "Step-by-step instructions to solve a problem",
+        "A computer",
+        "Internet",
+        "Hardware"
       ],
-      "correctAnswer": "Forever block",
+      "correctAnswer": "Step-by-step instructions to solve a problem",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "What will happen if you place a “repeat 5” block around a move command?",
+      "text": "What is Coding?",
       "options": [
-        "The sprite moves once",
-        "The sprite moves 5 times",
-        "The sprite stops",
-        "The sprite disappears"
+        "Writing instructions in programming language",
+        "Drawing",
+        "Talking",
+        "Playing"
       ],
-      "correctAnswer": "The sprite moves 5 times",
+      "correctAnswer": "Writing instructions in programming language",
       "timer": 15
     }
   ]
