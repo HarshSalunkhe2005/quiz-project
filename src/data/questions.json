@@ -1,125 +1,127 @@
+```json
 {
-  "quizTitle": "SUNDAY SPRINT AIR G QUIZ",
+  "quizTitle": " AIR G QUIZ",
   "questions": [
     {
       "id": 1,
-      "text": "Which of the following best describes Artificial Intelligence?",
+      "text": "What is NotebookLM?",
       "options": [
-        "Machines following fixed instructions only",
-        "Machines that can learn and make decisions",
-        "Devices that store data",
-        "Tools for drawing"
+        "Video Game",
+        "AI Study Tool",
+        "Music App",
+        "Calculator"
       ],
-      "correctAnswer": "Machines that can learn and make decisions",
+      "correctAnswer": "AI Study Tool",
       "timer": 15
     },
     {
       "id": 2,
-      "text": "A spam filter improves over time by learning from emails. This is an example of:",
+      "text": "Which company created NotebookLM?",
       "options": [
-        "Networking",
-        "Machine Learning",
-        "Hardware",
-        "Storage"
+        "Microsoft",
+        "Apple",
+        "Google",
+        "Amazon"
       ],
-      "correctAnswer": "Machine Learning",
+      "correctAnswer": "Google",
       "timer": 15
     },
     {
       "id": 3,
-      "text": "Which situation best represents Machine Learning?",
+      "text": "What can students upload in NotebookLM?",
       "options": [
-        "A program that always gives the same output",
-        "A system that improves accuracy using past data",
-        "A calculator solving fixed equations",
-        "A printer printing documents"
+        "PDFs and Notes",
+        "Games",
+        "Photos Only",
+        "Music"
       ],
-      "correctAnswer": "A system that improves accuracy using past data",
+      "correctAnswer": "PDFs and Notes",
       "timer": 15
     },
     {
       "id": 4,
-      "text": "Which task mainly uses Natural Language Processing?",
+      "text": "NotebookLM helps students to:",
       "options": [
-        "Translating one language to another",
-        "Detecting objects in images",
-        "Charging a device",
-        "Storing files"
+        "Play Cricket",
+        "Watch Movies",
+        "Understand Study Material",
+        "Cook Food"
       ],
-      "correctAnswer": "Translating one language to another",
+      "correctAnswer": "Understand Study Material",
       "timer": 15
     },
     {
       "id": 5,
-      "text": "A phone unlocking using face recognition uses:",
+      "text": "Which feature is available in NotebookLM?",
       "options": [
-        "NLP",
-        "Computer Vision",
-        "IoT",
-        "Networking"
+        "Summary Generation",
+        "Car Racing",
+        "Shopping",
+        "Gaming"
       ],
-      "correctAnswer": "Computer Vision",
+      "correctAnswer": "Summary Generation",
       "timer": 15
     },
     {
       "id": 6,
-      "text": "In robotics, which combination is essential for a robot to work properly?",
+      "text": "Can NotebookLM answer questions from uploaded notes?",
       "options": [
-        "Sensor + Controller + Actuator",
-        "Screen + Keyboard",
-        "Paper + Pen",
-        "Battery only"
+        "Yes",
+        "No",
+        "Only Sometimes",
+        "Only Teachers Can Use It"
       ],
-      "correctAnswer": "Sensor + Controller + Actuator",
+      "correctAnswer": "Yes",
       "timer": 15
     },
     {
       "id": 7,
-      "text": "A smart irrigation system that waters plants automatically based on soil moisture is an example of:",
+      "text": "NotebookLM is useful for:",
       "options": [
-        "Gaming system",
-        "IoT application",
-        "Manual system",
-        "Drawing tool"
+        "Homework",
+        "Exam Revision",
+        "Smart Notes",
+        "All of These"
       ],
-      "correctAnswer": "IoT application",
+      "correctAnswer": "All of These",
       "timer": 15
     },
     {
       "id": 8,
-      "text": "Why are sensors important in AI-based systems?",
+      "text": "NotebookLM makes learning:",
       "options": [
-        "They help collect real-world data",
-        "They only store images",
-        "They increase screen size",
-        "They replace software"
+        "Difficult",
+        "Slow",
+        "Smart and Easy",
+        "Boring"
       ],
-      "correctAnswer": "They help collect real-world data",
+      "correctAnswer": "Smart and Easy",
       "timer": 15
     },
     {
       "id": 9,
-      "text": "If you want a sprite to move continuously, which block is most suitable?",
+      "text": "Which of these is an AI tool?",
       "options": [
-        "Repeat block",
-        "Forever block",
-        "Stop block",
-        "Say block"
+        "NotebookLM",
+        "Pencil",
+        "Water Bottle",
+        "School Bus"
       ],
-      "correctAnswer": "Forever block",
+      "correctAnswer": "NotebookLM",
       "timer": 15
     },
     {
       "id": 10,
-      "text": "What will happen if you place a “repeat 5” block around a move command?",
+      "text": "Why should students use NotebookLM?",
       "options": [
-        "The sprite moves once",
-        "The sprite moves 5 times",
-        "The sprite stops",
-        "The sprite disappears"
+        "To waste time",
+        "To learn faster and better",
+        "To avoid studies",
+        "To play games only"
       ],
-      "correctAnswer": "The sprite moves 5 times",
+      "correctAnswer": "To learn faster and better",
       "timer": 15
     }
   ]
 }
+```
